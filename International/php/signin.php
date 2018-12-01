@@ -17,7 +17,7 @@
     $_SESSION['username'] = $username_d;
 
     echo "<script>alert(\"Welcome\");</script>";
-    echo("<script>location.replace('../index.html');</script>");
+    echo("<script>location.replace('../logined_index.html');</script>");
   }
   else{
     echo "<script>alert(\"Invalid Username or Password. Please check your Username or Password\");</script>";
