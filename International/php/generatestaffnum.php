@@ -7,14 +7,24 @@
   $u_result = mysqli_query($conn, $u_sql);
   $u_data = mysqli_fetch_assoc($u_result);
 
-  if($u_data['flag1'] == 1){
+  $s_sql = "SELECT COUNT(staffNum) as flag2 from user_account where username = '$username_d'";
+  $s_result = mysqli_query($conn, $s_sql);
+  $s_data = mysqli_fetch_assoc($s_result);
+
+
+  if($u_data['flag1'] == 1 AND $s_data['flag2'] != 1){
     $rand_number = rand(1111,9999);
     $temp_staffNum = "ST"."-".$rand_number."-".$username_d;
 
     $sql = "UPDATE user_account SET staffNum = '$temp_staffNum' where username ='$username_d'";
     mysqli_query($conn, $sql);
-    //echo "<script>alert(\"$username_d's staff number is $temp_staffNum\");</script>";
-    //echo("<script>location.replace('../created_staffnum.html');</script>");
+  }
+  else if($s_data['flag2'] == 1){
+    echo "<script>alert(\"The staff already had staff number, please check staff's user name\");</script>";
+    echo "<script>
+  　　　　　　history.back()
+  　　　　　</script>
+  　　　　";
   }
   else{
     echo "<script>alert(\"Invalid username, please check staff's user name\");</script>";
@@ -114,7 +124,7 @@
 										<li><a href="management.html">Management</a></li>
 									</ul>
 								</li>
-								<li class="btn-cta"><a href="php/logout.php"><span>Sign out</span></a></li>
+								<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -129,12 +139,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 animate-box">
-					<h2>Generating Staff Number Success</h2>
-					<h4>You need to copy the staff number blow and send it to the staff.</h4>
+					<h2>Generating Staff Number Success!</h2>
+					<h4>You need to copy the staff number below and send it to the staff.</h4>
 						<form action="../staffnum.html" method="POST">
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="username">Staff's User Name</label>
+								<label for="username"><?php print($username_d)?>'s Staff Number</label>
 								<h2><?php print($temp_staffNum); ?></h2>
 							</div>
 						</div>
