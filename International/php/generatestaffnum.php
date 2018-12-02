@@ -11,7 +11,6 @@
   $s_result = mysqli_query($conn, $s_sql);
   $s_data = mysqli_fetch_assoc($s_result);
 
-
   if($u_data['flag1'] == 1 AND $s_data['flag2'] != 1){
     $rand_number = rand(1111,9999);
     $temp_staffNum = "ST"."-".$rand_number."-".$username_d;
