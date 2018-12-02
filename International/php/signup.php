@@ -31,6 +31,13 @@
   　　　　　</script>
   　　　　";
   }
+  else if(strlen($fpassword_d)< 6  OR strlen($rpassword_d)< 6 ){
+    echo "<script>alert(\"Passwords should be longer than 6\");</script>";
+    echo "<script>
+  　　　　　　history.back()
+  　　　　　</script>
+  　　　　";
+  }
   else if($p_flag < 0 OR $p_flag > 0){
     echo "<script>alert(\"Please make sure your passwords match.\");</script>";
     echo "<script>
