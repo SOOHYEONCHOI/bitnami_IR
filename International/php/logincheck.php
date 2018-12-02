@@ -1,6 +1,6 @@
 <?php
 	session_start();
 	if(isset($_SESSION['is_login'])){
-		header('Location: ./logined_index.html');
+		header('Location: logined/logined_index.html');
 	}
 ?>
