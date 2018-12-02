@@ -65,23 +65,27 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<style type="text/css">
-			table {
-					border: 3;
-					border-collapse: collapse;
-					border-spacing: 0;
-					width: 200px;
-			}
-			table td, table th {
-					border: 3px solid;
-					padding: 2px 5px 2px 5px;
-			}
-			.text-center { text-align: center; }
-			.text-right { text-align: right; }
-	</style>
-	</head>
-	<body>
 
+
+	</head>
+	<style>
+	.table_layout {
+		width: 100%;
+	}
+	table {
+		width: 100%;
+		border: 3px solid #bcbcbc;
+		text-align: center;
+	}
+	th, td{
+		border: 3px solid #bcbcbc;
+		text-align: center;
+	}
+	.text-center { text-align: center; }
+	.text-right { text-align: right; }
+	</style>
+
+	<body>
 	<div class="fh5co-loader"></div>
 
 	<div id="page">
@@ -132,40 +136,50 @@
 	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 animate-box">
+				<div class="col-md-20 animate-box">
 					<h2>Account Management System</h2>
-					<table class= "text-center">
-					      <b>Account List</b>
-					      <thead>
-					        <tr>
-					          <th></th>
-					          <th>Username</th>
-					          <th>Email</th>
-					          <th>First Name</th>
-										<th>Last Name</th>
-										<th>Phone Number</th>
-										<th>User Name</th>
-										<th>Staff Number</th>
-					        </tr>
-					      </thead>
-					      <tbody>
-									<?php
-									$i = 1;
-									while( $row = mysqli_fetch_array($result) ) {
-			                 echo '<tr><td>' . $i++ . '</td>' .
-											 		 '<td>' . $row['username'] . '</td>' .
-			                     '<td>' . $row['email'] . '</td>' .
-													 '<td>' . $row['firstname'] . '</td>' .
-													 '<td>' . $row['lastname'] . '</td>' .
-													 '<td>' . $row['phoneNum'] . '</td>' .
-													 '<td>' . $row['ulevel'] . '</td>' .
-													 '<td>' . $row['staffNum'] . '</td></tr>';
-			             }
-									 ?>
-					      </tbody>
-					    </table>
-
-
+					<div class ="table_layout">
+						<table>
+							<colgroup>
+								<col width="3%" />
+            		<col width="10%" />
+            		<col width="15%" />
+            		<col width="10%" />
+            		<col width="10%" />
+								<col width="10%" />
+								<col width="10%" />
+								<col width="10%" />
+							</colgroup>
+							<b>Account List</b>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Username</th>
+									<th>Email</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Phone Number</th>
+									<th>User Name</th>
+									<th>Staff Number</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$i = 1;
+								while( $row = mysqli_fetch_array($result) ) {
+										 echo '<tr><td class = "text-center">' . $i++ . '</td>' .
+												 '<td>' . $row['username'] . '</td>' .
+												 '<td>' . $row['email'] . '</td>' .
+												 '<td>' . $row['firstname'] . '</td>' .
+												 '<td>' . $row['lastname'] . '</td>' .
+												 '<td>' . $row['phoneNum'] . '</td>' .
+												 '<td>' . $row['ulevel'] . '</td>' .
+												 '<td>' . $row['staffNum'] . '</td></tr>';
+								 }
+								 ?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
