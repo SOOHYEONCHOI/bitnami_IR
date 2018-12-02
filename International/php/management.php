@@ -140,12 +140,14 @@
 					<h2>Account Management System</h2>
 					<div class ="table_layout">
 						<table>
-							<colgroup>
+							<colgroup class = "text-center">
 								<col width="3%" />
             		<col width="10%" />
             		<col width="15%" />
             		<col width="10%" />
             		<col width="10%" />
+								<col width="10%" />
+								<col width="10%" />
 								<col width="10%" />
 								<col width="10%" />
 								<col width="10%" />
@@ -161,6 +163,8 @@
 									<th>Phone Number</th>
 									<th>User Name</th>
 									<th>Staff Number</th>
+									<th> </th>
+									<th> </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -174,7 +178,9 @@
 												 '<td>' . $row['lastname'] . '</td>' .
 												 '<td>' . $row['phoneNum'] . '</td>' .
 												 '<td>' . $row['ulevel'] . '</td>' .
-												 '<td>' . $row['staffNum'] . '</td></tr>';
+												 '<td>' . $row['staffNum'] . '</td>'.
+												 '<td><input type="submit" name="submit" value ="Edit"/> </td>'.
+												 '<td><input type="reset" name="reset" value ="Delete"/> </td></tr>';
 								 }
 								 ?>
 							</tbody>
