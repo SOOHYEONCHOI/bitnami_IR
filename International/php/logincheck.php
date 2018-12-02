@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	if(isset($_SESSION['is_login'])){
-		header('Location: ../logined/logined_index.html');
+		include 'levelcheck.php';
+		//header('Location: ../admin/logined_index.html');
 	}
 ?>
