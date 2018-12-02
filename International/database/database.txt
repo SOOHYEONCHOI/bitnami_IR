@@ -1,6 +1,6 @@
 CREATE TABLE user_account(
-	username VARCHAR(30) NOT NULL,
-	email VARCHAR(30) NOT NULL,
+		username VARCHAR(30) NOT NULL,
+		email VARCHAR(30) NOT NULL,
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
     fpassword VARCHAR(30) NOT NULL,
