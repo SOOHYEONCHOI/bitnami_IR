@@ -1,6 +1,4 @@
-<?php
-	include 'levelcheck.php';
-?>
+<!-- <?php include 'levelcheck.php'; ?> -->
 
 <!DOCTYPE HTML>
 <html>
