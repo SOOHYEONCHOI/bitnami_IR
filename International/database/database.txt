@@ -1,18 +1,61 @@
 CREATE TABLE user_account(
-		username VARCHAR(30) NOT NULL,
-		email VARCHAR(30) NOT NULL,
-    firstname VARCHAR(30) NOT NULL,
-    lastname VARCHAR(30) NOT NULL,
-    fpassword VARCHAR(30) NOT NULL,
-    rpassword VARCHAR(30) NOT NULL,
-    phoneNum VARCHAR(30) NOT NULL,
-    ulevel int default 9,
-    staffNum VARCHAR(30) NULL,
-    street VARCHAR(30) NULL,
-    city VARCHAR(20) NULL,
-    state CHAR(2) NULL,
-    zipcode int NULL,
-    primary key (username)
+	username 	VARCHAR(30) 	NOT NULL,
+	email 		VARCHAR(30) 	NOT NULL,
+    firstname 	VARCHAR(30) 	NOT NULL,
+    lastname 	VARCHAR(30) 	NOT NULL,
+    fpassword 	VARCHAR(30) 	NOT NULL,
+    rpassword 	VARCHAR(30) 	NOT NULL,
+    phoneNum 	VARCHAR(30) 	NOT NULL,
+    ulevel 		INT 			DEFAULT 9,
+    staffNum 	VARCHAR(30) 	NULL,
+    street 		VARCHAR(30) 	NULL,
+    city 		VARCHAR(20) 	NULL,
+    state 		CHAR(2) 		NULL,
+    zipcode 	INT 			NULL,
+    
+    PRIMARY KEY (username)
 );
 
----------------------------------------
+CREATE TABLE menu(
+	menu_ID		INT				NOT NULL,
+	menuname	VARCHAR(30)		NOT NULL,
+	price		FLOAT			NOT NULL,
+	description	VARCHAR(255)	NOT NULL,
+	
+	PRIMARY KEY (menu_ID)
+);
+
+CREATE TABLE order(
+	order_ID	VARCHAR(16)		NOT NULL,
+	username	VARCHAR(16)		NOT NULL,
+	menu_ID		INT				NOT NULL,
+	amount		INT				NOT NULL,
+	total_price	FLOAT			NOT NULL,
+	estimatedTime	INT			NOT NULL,
+	category	VARCHAR(30)		NOT NULL,
+	
+	PRIMARY KEY (order_ID, username, menu_ID),
+	FOREIGH KEY (username) REFERENCES user_account(username),
+	FOREIGH KEY (menu_ID) REFERENCES menu(menu_ID)
+);
+
+CREATE TABLE advertisement(
+	ad_ID		VARCHAR(10) 	NOT NULL,
+	ad_Title	VARCHAR(40)		NOT NULL,
+	ad_contents	VARCHAR(255)	NOT NULL,
+	duration	INT				NOT NULL,
+	start_Date	DATETIME		NOT NULL,
+	end_Date	DATETIME		NOT NULL,
+	status		VARCHAR(30)		NOT NULL,
+	
+	PRIMARY KEY (ad_ID)
+);
+
+CREATE TABLE have(
+	ad_ID		VARCHAR(10)		NOT NULL,
+	username	VARCHAR(30)		NOT NULL,
+	
+	PRIMARY KEY (ad_ID, username),
+	FOREIGH KEY (ad_ID) REFERENCES advertisement(ad_ID),
+	FOREIGH KEY (username) REFERENCES user_Account(username)
+);
