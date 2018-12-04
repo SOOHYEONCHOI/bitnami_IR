@@ -8,15 +8,12 @@
 	$data = mysqli_fetch_assoc($result);
 
 	if($data['level'] >= 0 AND $data['level'] <= 1){
-		//echo "<script>alert(\"You don't have permission\");</script>";
     echo("<script>location.replace('../admin/admin_index.html');</script>");
 	}
 	else if($data['level'] >= 2 AND $data['level'] <= 4){
-		echo "<script>alert(\"You don't have permission\");</script>";
 		echo("<script>location.replace('../staff/staff_index.html');</script>");
 	}
 	else if($data['level'] >= 5 AND $data['level'] <= 9){
-		echo "<script>alert(\"You don't have permission\");</script>";
 		echo("<script>location.replace('../customer/customer_index.html');</script>");
 	}
 ?>
