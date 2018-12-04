@@ -4,16 +4,33 @@
 	$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
 	$sql = "SELECT username, email, firstname, lastname, phoneNum, ulevel, staffNum from user_account";
 	$result = mysqli_query($conn, $sql);
-	//$data = mysqli_fetch_assoc($result);
 
-	//$column_data=array();
-	//$ret=mysqli_query($result);
-	//while($rows=mysqli_fetch_array($ret)){
-//			for($i=0;$i<7;$i++){
-//					$column_data[]=$rows[$i];
-//			}
-//	}
+	$numrow = mysqli_num_rows($result);
+	$Username = array();
+	$Email = array();
+	$Firstname = array();
+	$Lastname = array();
+	$Phonenum = array();
+	$Ulevel = array();
+	$Staffnum = array();
+	$i = 0;
 
+
+	while($data = mysqli_fetch_array($result)){
+		$Username[$i] = $data[username];
+		$Email[$i] = $data[email];
+		$Firstname[$i] = $data[firstname];
+		$Lastname[$i] = $data[lastname];
+		$Phonenum[$i] = $data[phoneNum];
+		$Ulevel[$i] = $data[ulevel];
+		$Staffnum[$i] = $data[staffNum];
+	  $i++;
+	}
+
+//	$item	= array();
+//	while($rs = mysqli_fetch_assoc($result)) {
+//	array_push($item, $rs);
+//}
 ?>
 
 <!DOCTYPE HTML>
@@ -136,7 +153,7 @@
 	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-20 animate-box">
+				<div class="col-md-35 animate-box">
 					<h2>Account Management System</h2>
 					<div class ="table_layout">
 						<table>
@@ -148,8 +165,8 @@
             		<col width="10%" />
 								<col width="10%" />
 								<col width="10%" />
-								<col width="10%" />
-								<col width="10%" />
+								<col width="18%" />
+								<col width="7%" />
 								<col width="10%" />
 							</colgroup>
 							<b>Account List</b>
@@ -169,18 +186,17 @@
 							</thead>
 							<tbody>
 								<?php
-								$i = 1;
-								while( $row = mysqli_fetch_array($result) ) {
-										 echo '<tr><td class = "text-center">' . $i++ . '</td>' .
-												 '<td>' . $row['username'] . '</td>' .
-												 '<td>' . $row['email'] . '</td>' .
-												 '<td>' . $row['firstname'] . '</td>' .
-												 '<td>' . $row['lastname'] . '</td>' .
-												 '<td>' . $row['phoneNum'] . '</td>' .
-												 '<td>' . $row['ulevel'] . '</td>' .
-												 '<td>' . $row['staffNum'] . '</td>'.
-												 '<td><input type="submit" name="submit" value ="Edit"/> </td>'.
-												 '<td><input type="reset" name="reset" value ="Delete"/> </td></tr>';
+								for($j=1; $j<=$numrow; $j++){
+										 echo '<tr><td class = "text-center">' . $j . '</td>' .
+												 '<td>' . $Username[$j-1] . '</td>' .
+												 '<td>' . $Email[$j-1] . '</td>' .
+												 '<td>' . $Firstname[$j-1] . '</td>' .
+												 '<td>' . $Lastname[$j-1] . '</td>' .
+												 '<td>' . $Phonenum[$j-1] . '</td>' .
+												 '<td>' . $Ulevel[$j-1] . '</td>' .
+												 '<td>' . $Staffnum[$j-1] . '</td>'.
+												 '<td> <a href="edit_account.php?username='.$Username[$j-1].'"> Edit </a> </td>'.
+												 '<td> <a href="delete_account.php?username='.$Username[$j-1].'" onclick="return confirm(\'do you want to delete Y/N\')"> Delete</a> </td></tr>';
 								 }
 								 ?>
 							</tbody>

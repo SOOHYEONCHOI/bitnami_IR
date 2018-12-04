@@ -95,32 +95,32 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="fh5co-logo"><a href="index.html">International Restaurant<span>.</span></a></div>
+							<div id="fh5co-logo"><a href="../index.html">International Restaurant<span>.</span></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<a href="index.html">Home</a>
+								<a href="../index.html">Home</a>
 								<li class="has-dropdown">
-									<a href="order.html">Order</a>
+									<a href="../order.html">Order</a>
 									<ul class="dropdown">
 										<li><a href="#">For Here</a></li>
 										<li><a href="#">To Go</a></li>
 									</ul>
 								</li>
-								<li><a href="reservation.html">Reservation</a></li>
+								<li><a href="../reservation.html">Reservation</a></li>
 								<li class="has-dropdown">
-									<a href="advertisement.html">Advertisement</a>
+									<a href="../advertisement.html">Advertisement</a>
 									<ul class="dropdown">
 										<li><a href="#">Event</a></li>
 										<li><a href="#">Survey</a></li>
 									</ul>
 								</li>
-								<li><a href="Inventory.html">Inventory</a></li>
+								<li><a href="../Inventory.html">Inventory</a></li>
 								<li class="has-dropdown">
-									<a href="account.html">Account</a>
+									<a href="../account.html">Account</a>
 									<ul class="dropdown">
-										<li><a href="staffnum.html">Staff Num</a></li>
-										<li><a href="management.html">Management</a></li>
+										<li><a href="staffnum.php">Staff Num</a></li>
+										<li><a href="management.php">Management</a></li>
 									</ul>
 								</li>
 								<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
