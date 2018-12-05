@@ -1,11 +1,24 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+$checklist = array();
+$checklist = $_POST['check_list'];
+
+if(!empty($checklist)) {
+	foreach($checklist as $check) {
+		$u_sql = "SELECT menuname, price FROM menu WHERE menuname = '$check'";
+		$u_result = mysqli_query($conn, $u_sql);
+		$u_data = mysqli_fetch_array($u_result);
+		$total_price += (float) $u_data['price'];
+	}
+}
+echo $total_price;
+echo "<br>";
+?>
+
 <!DOCTYPE HTML>
 <html>
-<?php
-	session_start();
-	if(isset($_SESSION['is_login'])){
-		header('Location: ./logined_index.html');
-	}
-?>
+
+
 
 	<head>
 	<meta charset="utf-8">
@@ -167,7 +180,12 @@
 							</ul>
 						</div>
 					</div>
-					
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label for="email">Username</label>
+							<input type="text" name="username" class="form-control" placeholder="<?php echo $total_price ?>">
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -272,6 +290,3 @@
 	<script src="js/accordion_menu.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
-
-	</body>
-</html>
