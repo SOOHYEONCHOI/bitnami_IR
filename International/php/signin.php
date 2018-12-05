@@ -13,7 +13,7 @@
   $p_data = mysqli_fetch_assoc($p_result);
 
   if($u_data['flag1'] == 1 AND $p_data['flag2'] == 1){
-    $_SESSION['is_login'] =true;
+    $_SESSION['is_login'] = true;
     $_SESSION['username'] = $username_d;
 
     echo "<script>alert(\"Welcome\");</script>";
