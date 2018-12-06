@@ -10,16 +10,17 @@ if(!empty($checklist)) {
 		$u_data = mysqli_fetch_array($u_result);
 		$total_price += (float) $u_data['price'];
 	}
+	echo "<script>alert(\"Food Select Success. Redirecting to summary page...\");</script>";
+}else {
+	echo "<script>alert(\"Please select at least one food for further process\");</script>";
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-echo $total_price;
-echo "<br>";
+
+
 ?>
 
 <!DOCTYPE HTML>
 <html>
-
-
-
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,86 +116,21 @@ echo "<br>";
 
 <!-- new one -->
 	<div id="fh5co-contact">
-		<div class="mcontainer">
+		<div class="container">
 			<div class="row">
 				
-				<h2>Order</h2>
-				<h4>Select foods you want and enjoy the fast and accurate service.</h4>
+				<h2>Order Summary</h2>
 
-				<form action="test.php" method="POST">
-					<button class="accordion" type="button">Vegetable</button>
-					<div class="panel">
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="mcontainer">
-									<input type="checkbox" name="check_list[]" value="Caesar Salad">
-									<img src="images/menu_salad.jpg" height=150 width=180 />
-									<label>Caesar Salad $3.5</label>
-									<span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="mcontainer">
-									<input type="checkbox" name="check_list[]" value="Garlic Bread">
-									<img src="images/menu_garlic_bread.jpg" height=150 width=180 />
-									<label>Garlic Bread</label>
-									<span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
+				
+				<div class="row form-group">
+					<div class="col-md-12">
+						<label for="email">Total Price</label>
+						<td><input type="text" name="username" class="form-control" placeholder="<?php echo $total_price ?>"></td>
 					</div>
-						
-					<button class="accordion" type="button">Meat</button>
-					<div class="panel">
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="mcontainer">
-									<input type="checkbox" name="check_list[]" value="Cheese Burger">
-									<img src="images/menu_cheese_burger.jpg" height=150 width=180 />
-									<label>Cheese Burger</label>
-									<span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="mcontainer">
-									<input type="checkbox" name="check_list[]" value="Sweet Sour Pork">
-									<img src="images/menu_sweetsour_pork.jpg" height=150 width=180 />
-									<label>Sweet Sour Pork</label>
-									<span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<input type="submit" value="Order: For Here" class="btn btn-primary">
-						<div class="has-dropdown">
-							<input type="submit" value="Order: To Go" class="btn btn-primary">
-							<ul class="dropdown">
-								<li><a href="#">Pick-up</a></li>
-								<li><a href="#">Deliver</a></li>
-							</ul>
-						</div>
-					</div>
-					
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-	
-
-	
 
 			
 
