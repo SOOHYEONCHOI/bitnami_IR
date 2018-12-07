@@ -157,11 +157,7 @@
 		</div>
 		
 		
-		<form action="../payorder.html" method="POST">
-			<p align="center">
-				<input type="submit" value="Check Out" class="btn btn-primary">
-			</p>
-		</form>
+		<button class="btn-cta"><a href="../customer/customer_index.html"><span>Back</span></a></button>
 		
 	</div>
 
