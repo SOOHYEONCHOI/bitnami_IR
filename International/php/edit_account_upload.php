@@ -28,8 +28,10 @@
   　　　　";
   }
   else{
-    if(strlen($fpassword_d)> 6){
-      $sql = "UPDATE user_account SET fpassword = '$fpassword_d', rpassword = '$rpassword_d' where username ='$username_d'";
+    if(strlen($fpassword_d)>= 6){
+      $sql = "UPDATE user_account SET fpassword = '$fpassword_d' where username ='$username_d'";
+      mysqli_query($conn, $sql);
+      $sql = "UPDATE user_account SET rpassword = '$fpassword_d' where username ='$username_d'";
       mysqli_query($conn, $sql);
     }
     if(strlen($ulevel_d)>0){
