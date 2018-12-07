@@ -1,3 +1,81 @@
+<?php
+	session_start();
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
+	$email = $_POST['pEmail'];
+	$phoneNum = $_POST['phonenumber'];
+	$nameOcard = $_POST['nameoncard'];
+	$cardnum = $_POST['cardnum'];
+	$csv = $_POST['csv'];
+	$expireM = $_POST['expireMM'];
+	$expireD = $_POST['expireDD'];
+	
+	$digits_needed = 8;
+	$random_number = '';
+	$count = 0;
+	
+	#check bank information
+	
+	
+	
+	if(empty($fname) or empty($lname) or empty($email) or empty($phoneNum) or empty($nameOcard) or empty($cardnum) or empty($csv) or empty($expireM) or empty($expireD)) {
+		echo "<script>window.location.href='payorder.html';alert(\"Please fill all information\");</script>";
+	}else {
+		if(!ctype_alpha($fname) or !ctype_alpha($lname)) {
+			echo "<script>window.location.href='payorder.html';alert(\"Error - first name or last name is invalid\");</script>";
+		}else {
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid email\");</script>";
+			}else {
+				if(!is_numeric($phoneNum)) {
+					echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid phone number\");</script>";
+				}else {
+					if(is_numeric($nameOcard)) {
+						echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid Card Holder's Name\");</script>";
+					}else {
+						if(strlen($cardnum) < 10 || !is_numeric($cardnum)) {
+							echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid card number. Please check size and format\");</script>";
+						}else {
+							if(strlen($csv) < 3 || !is_numeric($csv)) {
+								echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid CSV number\");</script>";
+							}else {
+								if((int)$expireD < 18) {
+									echo "<script>window.location.href='payorder.html';alert(\"Error - The card has been expired\");</script>";
+								}else if((int)$expireD == 18 and (int)$expireM <= 12) {
+									echo "<script>window.location.href='payorder.html';alert(\"Error - The card has been expired\");</script>";
+								}else {
+									while($count < $digits_needed) {
+										$random_digit = mt_rand(0, 9);
+										$random_number .= $random_digit;
+										$count++;
+									}
+									$orderID = date("Ymd") .''. $random_number;
+									$_SESSION['orderID'] = $orderID;
+									
+									$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+									$total_price = $_SESSION['total_price'];
+									
+									if(!empty($_SESSION['select_food'])) {
+										foreach($_SESSION['select_food'] as $eachfood) {
+											$u_select = "SELECT menuname, menu_ID FROM menu WHERE menuname = '$eachfood'";
+											$u_result = mysqli_query($conn, $u_select);
+											$u_data = mysqli_fetch_array($u_result);
+											$foodID = $u_data['menu_ID'];
+											$u_insert = "INSERT INTO sale (order_ID, username, menu_ID, amount, total_price, estimatedTime, category) VALUES('$orderID', 'guest', '$foodID', 1, '$total_price', 25, 'Order: For Here')";
+											$u_result = mysqli_query($conn, $u_insert);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,6 +86,7 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
+
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -44,9 +123,12 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]-->
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<!-- [endif]-->
+	
+	<!--menu-->
+	<link rel="stylesheet" href="css/menubox.css">
 
 	</head>
 	<body>
@@ -63,9 +145,9 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<a href="index.html">Home</a>
+							<b href="index.html">Home</b>
 							<li class="has-dropdown">
-								<a href="order.html">Order</a>
+								<a href="order_menu.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
@@ -73,13 +155,13 @@
 							</li>
 							<li><a href="reservation.html">Reservation</a></li>
 							<li class="has-dropdown">
-								<b href="advertisement.html">Advertisement</b>
+								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
 									<li><a href="#">Event</a></li>
 									<li><a href="#">Survey</a></li>
 								</ul>
 							</li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="Inventory.html">Inventory</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
 						</ul>
@@ -89,18 +171,46 @@
 		</div>
 	</nav>
 
-	<div class="fh5co-contact">
+<!-- new one -->
+	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9 animate-box">
-					<p>Create Advertisement</p>
-					<form action="createAd.php" method="POST">
-						<input type="text" name="title" class=>
+				
+				<h2>Order Review</h2>
+
+				<div class="row form-group">
+					<div class="col-md-12">
+						<p>
+							<?php
+								echo "Order ID:  {$orderID}";
+							?>
+						</p>
 						
-					</form>
+						<label for="email">Price for each food</label>
+						<p align="right">
+							<?php
+								foreach($_SESSION['select_food'] as $check){
+									$u_sql = "SELECT menuname, price FROM menu WHERE menuname = '$check'";
+									$u_result = mysqli_query($conn, $u_sql);
+									$u_data = mysqli_fetch_array($u_result);
+									echo $check . '    ' . $u_data['price'];
+									echo "<br>";
+								} 
+							?>
+						</p>
+						<br/>
+						
+						<p align="right"><?php echo "<label for='email'>Total Price: </label>". $_SESSION['total_price']; ?></p>
+					</div>
 				</div>
-			</dov>
+			</div>
 		</div>
+		
+		<form action="delete_order.php">
+			<input type="submit" value="Delete Order" class="btn btn-primary">
+		</form>
+		<button><a href="customer/customer_index.html">Back</a></button>
+		
 	</div>
 
 	<footer id="fh5co-footer" role="contentinfo">
@@ -186,8 +296,8 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
+	<!-- Accordion Menu -->
+	<script src="js/accordion_menu.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
-	</body>
-</html>

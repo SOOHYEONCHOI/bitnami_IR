@@ -25,7 +25,7 @@ CREATE TABLE menu(
 	PRIMARY KEY (menu_ID)
 );
 
-CREATE TABLE order(
+CREATE TABLE sale(
 	order_ID	VARCHAR(16)		NOT NULL,
 	username	VARCHAR(16)		NOT NULL,
 	menu_ID		INT				NOT NULL,
@@ -35,8 +35,8 @@ CREATE TABLE order(
 	category	VARCHAR(30)		NOT NULL,
 
 	PRIMARY KEY (order_ID, username, menu_ID),
-	FOREIGH KEY (username) REFERENCES user_account(username),
-	FOREIGH KEY (menu_ID) REFERENCES menu(menu_ID)
+	FOREIGN KEY (username) REFERENCES user_account(username),
+	FOREIGN KEY (menu_ID) REFERENCES menu(menu_ID)
 );
 
 CREATE TABLE advertisement(
@@ -56,21 +56,6 @@ CREATE TABLE have(
 	username	VARCHAR(30)		NOT NULL,
 
 	PRIMARY KEY (ad_ID, username),
-	FOREIGH KEY (ad_ID) REFERENCES advertisement(ad_ID),
-	FOREIGH KEY (username) REFERENCES user_Account(username)
-);
-
-
-CREATE TABLE reservation(
-		res_ID INT NOT NULL AUTO_INCREMENT,
-		location VARCHAR(15) NOT NULL,
-		res_date date NOT NULL,
-		res_time VARCHAR(10) NOT NULL,
-		seat INT NOT NULL,
-		adults INT NOT NULL,
-		child INT NOT NULL,
-		username VARCHAR(30) NOT NULL,
-		CONTAINS check_loc CHECK(location in ("Brookings", "New York", "San Francisco", "Minneapolis"),
-		FOREIGN KEY (username) REFERENCES user_account(username),
-		PRIMARY KEY (res_ID, username)
+	FOREIGN KEY (ad_ID) REFERENCES advertisement(ad_ID),
+	FOREIGN KEY (username) REFERENCES user_Account(username)
 );

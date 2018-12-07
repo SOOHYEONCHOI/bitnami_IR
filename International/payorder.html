@@ -28,31 +28,21 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="css/magnific-popup.css">
-
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
-
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	</head>
 	<body>
-
 	<div class="fh5co-loader"></div>
-
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="top-menu">
@@ -63,7 +53,7 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<a href="index.html">Home</a>
+							<li><a href="index.html">Home</a></li>
 							<li class="has-dropdown">
 								<a href="order.html">Order</a>
 								<ul class="dropdown">
@@ -73,7 +63,7 @@
 							</li>
 							<li><a href="reservation.html">Reservation</a></li>
 							<li class="has-dropdown">
-								<b href="advertisement.html">Advertisement</b>
+								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
 									<li><a href="#">Event</a></li>
 									<li><a href="#">Survey</a></li>
@@ -89,17 +79,82 @@
 		</div>
 	</nav>
 
-	<div class="fh5co-contact">
+	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9 animate-box">
-					<p>Create Advertisement</p>
-					<form action="createAd.php" method="POST">
-						<input type="text" name="title" class=>
+					<h3>Payment</h3>
+					<h4>Complete the form below to make the payment for your order.</h4>
+					
+					<form action="payorder.php" method="POST">
+						<p2>Your personal information</p>
+						<div class="row form-group">
+							<div class="col-md-6">
+								<label>First Name</label>
+								<input type="text" name="fname" class="form-control" placeholder="Your first name">
+
+								<label>Last Name</label>
+								<input type="text" name="lname" class="form-control" placeholder="Your last name">
+							
+								<label>Email Address</label>
+								<input type="email" name="pEmail" class="form-control" placeholder="info@yoursite.com">
+
+								<label>Phone Number</label>
+								<input type="text" name="phonenumber" maxlength="10" class="form-control" maxlength="10" placeholder="Your phone number without symbol">
+							</div>
+						</div>
 						
+						<br/>
+						
+						<p2>Your payment information</p>
+						<div class="row form-group">
+							<div class="col-md-6">
+								<label>Name on Card</label>
+								<input type="text" name="nameoncard" class="form-control" placeholder="Card holder's name">
+
+								<label>Card Number</label>
+								<input type="text" name="cardnum" maxlength="16" class="form-control" placeholder="Enter Card Number Here">
+
+								<label>CSV</label>
+								<input type="text" name="csv" maxlength="3" class="form-control" placeholder="###">
+								
+								<br/>
+								<select name="expireMM">
+									<option value=''>Month</option>
+									<option value='01'>January</option>
+									<option value='02'>February</option>
+									<option value='03'>March</option>
+									<option value='04'>April</option>
+									<option value='05'>May</option>
+									<option value='06'>June</option>
+									<option value='07'>July</option>
+									<option value='08'>August</option>
+									<option value='09'>September</option>
+									<option value='10'>October</option>
+									<option value='11'>November</option>
+									<option value='12'>December</option>
+								</select>
+								<select name="expireDD">
+									<option value="18">2018</option>
+									<option value="19">2019</option>
+									<option value="20">2020</option>
+									<option value="21">2021</option>
+									<option value="22">2022</option>
+									<option value="23">2023</option>
+									<option value="24">2024</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<p>
+							<input type="submit" value="Pay" class="btn btn-primary">
+							</p>
+						</div>
 					</form>
+				
+				
 				</div>
-			</dov>
+			</div>
 		</div>
 	</div>
 
@@ -107,27 +162,27 @@
 		<div class="container">
 			<div class="row row-pb-md">
 				<div class="col-md-3 fh5co-widget">
-					<h4>Attorney's Law</h4>
-					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+					<h4>International Restaurant</h4>
+					<p>Explain about Restaurant</p>
 				</div>
 				<div class="col-md-3 col-md-push-1">
 					<h4>Navigation</h4>
 					<ul class="fh5co-footer-links">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Practice Areas</a></li>
-						<li><a href="#">Won Cases</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">About us</a></li>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="order.html">Order</a></li>
+						<li><a href="reservation.html">Reservation</a></li>
+						<li><a href="advertisement.html">Advertisement</a></li>
+						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
 
 				<div class="col-md-3 col-md-push-1">
 					<h4>Contact Information</h4>
 					<ul class="fh5co-footer-links">
-						<li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
-						<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
-						<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-						<li><a href="http://gettemplates.co">gettemplates.co</a></li>
+						<li>1217 8th St, Brookings, SD</li>
+						<li><a href="tel://1234567920">+1 6056912499</a></li>
+						<li><a href="mailto:drunkencodeinc@gmail.com">drunkencodeinc@gmail.com</a></li>
+						<li><a href="http://localhost/index.html">InternationalRestaurant.com</a></li>
 					</ul>
 				</div>
 
@@ -145,8 +200,8 @@
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
+						<small class="block">&copy; 2016 International Restaurant. All Rights Reserved.</small>
+						<small class="block">Designed by <a href="#" target="_blank">DrunkencodeInc.</a> </small>
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
@@ -186,6 +241,9 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
+	<!-- Google Map -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+	<script src="js/google_map.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
