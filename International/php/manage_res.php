@@ -141,8 +141,13 @@
 									</ul>
 								</li>
 								<li><a href="../Inventory.html">Inventory</a></li>
-                <li><a href="../about.html">About</a></li>
-  							<li><a href="../contact.html">Contact</a></li>
+								<li class="has-dropdown">
+									<a href="../account.html">Account</a>
+									<ul class="dropdown">
+										<li><a href="staffnum.php">Staff Num</a></li>
+										<li><a href="management.php">Management</a></li>
+									</ul>
+								</li>
 								<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
 							</ul>
 						</div>
@@ -196,8 +201,8 @@
 												 '<td>' . $seat[$j-1] . '</td>' .
 												 '<td>' . $adults[$j-1] . '</td>' .
 												 '<td>' . $child[$j-1] . '</td>'.
-												 '<td> <a href="edit_res.php?res_id='. $res_ID[$j-1] .'"> Edit </a> </td>'.
-												 '<td> <a href="delete_res.php?res_ID='.$res_ID[$j-1].'" onclick="return confirm(\'Do you want to delete Y/N\')"> Delete</a> </td></tr>';
+												 '<td> <a href="edit_res.php?username='.$Username[$j-1].'"> Edit </a> </td>'.
+												 '<td> <a href="delete_res.php?username='.$Username[$j-1].'?res_ID='.$res_ID[$j-1].'" onclick="return confirm(\'Do you want to delete Y/N\')"> Delete</a> </td></tr>';
 								 }
 								 ?>
 							</tbody>
