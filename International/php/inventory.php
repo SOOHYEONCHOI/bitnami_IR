@@ -17,28 +17,28 @@
   $status = "valid";					// generate from purchased date and struct table
   $expire_date;							// generate from purchased date and struct table
   $item_type_d;							// gather the selected item information from inven_struct table
-  
+
   $duration;							// get the duration from the struct table
   $total_cost;							// calculate the total cost to pay
- 
+
   $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
-  
-  $item_type_sql = "SELECT item_type FROM inventory_struct_table WHERE item_name='$item_name_d'";  
+
+  $item_type_sql = "SELECT item_type FROM inventory_struct_table WHERE item_name='$item_name_d'";
   $result = mysqli_query($conn, $item_type_sql);
   $_POST = mysqli_fetch_assoc($result);
   $item_type_d = $_POST['item_type'];
-  
-  $item_unit_sql = "SELECT item_unit FROM inventory_struct_table WHERE item_name='$item_name_d'";  
+
+  $item_unit_sql = "SELECT item_unit FROM inventory_struct_table WHERE item_name='$item_name_d'";
   $result = mysqli_query($conn, $item_unit_sql);
   $_POST = mysqli_fetch_assoc($result);
   $item_unit_d = $_POST['item_unit'];
-  
-  $current_price_sql = "SELECT current_price FROM inventory_struct_table WHERE item_name='$item_name_d'";  
+
+  $current_price_sql = "SELECT current_price FROM inventory_struct_table WHERE item_name='$item_name_d'";
   $result = mysqli_query($conn, $current_price_sql);
   $_POST = mysqli_fetch_assoc($result);
   $current_price_d = $_POST['current_price'];
-  
-  $duration_date_sql = "SELECT duration_date FROM inventory_struct_table WHERE item_name='$item_name_d'";  
+
+  $duration_date_sql = "SELECT duration_date FROM inventory_struct_table WHERE item_name='$item_name_d'";
   $result = mysqli_query($conn, $duration_date_sql);
   $_POST = mysqli_fetch_assoc($result);
   $duration = $_POST['duration_date'];
@@ -46,9 +46,9 @@
   $result = mysqli_query($conn, $adddays);
   $_POST = mysqli_fetch_assoc($result);
   $expire_date = $_POST['required_date'];
-   
+
   $total_cost = $purchase_amount_d * $current_price_d;
-    
+
 ?>
 
 <!DOCTYPE HTML>
@@ -149,28 +149,28 @@
 						<div class="blog-text">
 							<span class="posted_on">display summary order</span>
 							<span class="comment"><a href=""><i class="icon-speech-bubble"></i></a></span>
-								<?php 
+								<?php
 
 									echo "<td> item purchased date : </td>";
 									echo "<td> $purchase_Date_d <br/></td>";
-										
+
 									echo "<td> amount bought:	<td>";
 									echo "<td> $purchase_amount_d <br/><td>";
-										
+
 									echo "<td> item name : </td>";
 									echo "<td> $item_name_d <br/></td>";
-										
+
 									echo "<td> item type : </td>";
 									echo "<td> $item_type_d <br/></td>";
-									
+
 									echo "<td> total cost : </td>";
 									echo "<td> $total_cost dollars <br/></td>";
-									
+
 									echo "<td> item expires : </td>";
 									echo "<td> $expire_date <br/></td>";
 									$insert_sql = "INSERT INTO inventory_table( purchase_Date, item_name, item_type, item_unit, amount, current_price, status, expire_date) VALUES( '$purchase_Date_d', '$item_name_d', '$item_type_d', '$item_unit_d', '$purchase_amount_d', '$current_price_d', '$status', '$expire_date')";
 									mysqli_query($conn, $insert_sql);
-							
+
 								?>
 						</div>
 					</div>
@@ -287,4 +287,3 @@
 
 	</body>
 </html>
-
