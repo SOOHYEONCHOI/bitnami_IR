@@ -10,6 +10,7 @@
   $sql = "SELECT COUNT(username) as flag from user_account where username = '$username_d'";
   $result = mysqli_query($conn, $sql);
   $data = mysqli_fetch_assoc($result);
+
   $sql = "SELECT COUNT(email) as flag from user_account where email = '$email_d'";
   $result = mysqli_query($conn, $sql);
   $data2 = mysqli_fetch_assoc($result);

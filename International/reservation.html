@@ -74,7 +74,13 @@
 									<li><a href="#">To Go</a></li>
 								</ul>
 							</li>
-							<li><b href="reservation.html">Reservation</b></li>
+							<li class="has-dropdown">
+								<a href="reservation.html">Reservation</a>
+								<ul class="dropdown">
+									<li><a href="reservation.html">Create</a></li>
+									<li><a href="php/manage_res.php">Manage</a></li>
+								</ul>
+							</li>
 							<li class="has-dropdown">
 								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
@@ -107,10 +113,10 @@
 					</div>
 					<div class="col-md-4 col-md-pull-7">
 						<div class="booking-form">
-							<form>
+							<form action="php/create_res.php" method="POST">
 								<div class="form-group">
 									<span class="form-label">Location of Restaurant</span>
-									<select class="form-control">
+									<select class="form-control" name ="restaurant">
 										<option>Brookings</option>
 										<option>New York</option>
 										<option>San Francisco</option>
@@ -121,13 +127,13 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Date</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" type="date" name= "date" required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Time</span>
-											<input class="form-control" type="time" required>
+											<input class="form-control" type="time" name="time" required>
 										</div>
 									</div>
 								</div>
@@ -135,7 +141,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Seat</span>
-											<select class="form-control">
+											<select class="form-control" name="seat">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -161,7 +167,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Adults</span>
-											<select class="form-control">
+											<select class="form-control" name ="adults">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -174,7 +180,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Children</span>
-											<select class="form-control">
+											<select class="form-control" name="child">
 												<option>0</option>
 												<option>1</option>
 												<option>2</option>
@@ -185,9 +191,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-btn">
+								<div class="form-group">
 									<p align = "center">
-										<button class="btn btn-primary">Check availability</button>
+									<input type="submit" value="Check availability" class="btn btn-primary">
 									</p>
 								</div>
 							</form>
