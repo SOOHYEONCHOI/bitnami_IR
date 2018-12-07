@@ -128,7 +128,7 @@
                  </ul>
                </li>
                 <li class="has-dropdown">
-                  <a href="reservation.html">Reservation</a>
+                  <a href="../reservation.html">Reservation</a>
                   <ul class="dropdown">
                     <li><a href="../reservation.html">Create</a></li>
                     <li><a href="manage_res.php">Manage</a></li>
