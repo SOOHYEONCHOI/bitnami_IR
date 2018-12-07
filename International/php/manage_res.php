@@ -14,7 +14,7 @@
  $seat = array();
  $adults = array();
  $child = array();
-  $username = array();
+ $username = array();
  $i = 0;
 
 
