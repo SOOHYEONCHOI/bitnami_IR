@@ -1,6 +1,5 @@
 <?php
   session_start();
-
   $username_d = $_SESSION["username"];
   $restaurant_d = $_POST["restaurant"];
   $date_d = $_POST["date"];

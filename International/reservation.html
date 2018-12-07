@@ -116,7 +116,7 @@
 							<form action="/php/create_res.php" method="POST">
 								<div class="form-group">
 									<span class="form-label">Location of Restaurant</span>
-									<select class="form-control">
+									<select class="form-control" name ="restaurant">
 										<option>Brookings</option>
 										<option>New York</option>
 										<option>San Francisco</option>
@@ -127,13 +127,13 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Date</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" type="date" name ="date"required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Time</span>
-											<input class="form-control" type="time" required>
+											<input class="form-control" type="time" name = "time" required>
 										</div>
 									</div>
 								</div>
@@ -141,7 +141,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Seat</span>
-											<select class="form-control">
+											<select class="form-control" name ="seat">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -167,7 +167,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Adults</span>
-											<select class="form-control">
+											<select class="form-control" name ="adults">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -180,7 +180,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Children</span>
-											<select class="form-control">
+											<select class="form-control" name ="child">
 												<option>0</option>
 												<option>1</option>
 												<option>2</option>

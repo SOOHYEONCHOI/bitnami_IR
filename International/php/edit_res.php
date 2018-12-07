@@ -16,8 +16,6 @@
   $adults = $data["adults"];
   $child = $data["child"];
 
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -131,7 +129,8 @@
 							<form>
 								<div class="form-group">
 									<span class="form-label">Location of Restaurant</span>
-									<select class="form-control" value="<?php echo $location ?>">
+									<select class="form-control" name ="location">
+                    <option> <?php print($location)?> </option>
 										<option>Brookings</option>
 										<option>New York</option>
 										<option>San Francisco</option>
@@ -142,13 +141,13 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Date</span>
-											<input class="form-control" type="date" value=" <?php echo $res_date ?>" required>
+											<input class="form-control" type="date" name="date" value="<?php print($res_date)?>" required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Time</span>
-											<input class="form-control" type="time" value=" <?php echo $res_time ?>" required>
+											<input class="form-control" type="time" name="time" value="<?php print($res_time) ?>" required>
 										</div>
 									</div>
 								</div>
@@ -156,8 +155,9 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Seat</span>
-											<select class="form-control" value="<?php echo $seat ?>">
-												<option>1</option>
+											<select class="form-control" name ="seat">
+                        <option><?php echo $seat ?></option>
+                        <option>1</option>
 												<option>2</option>
 												<option>3</option>
 												<option>4</option>
@@ -182,8 +182,9 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Adults</span>
-											<select class="form-control" value="<?php echo $adults ?>">
-												<option>1</option>
+											<select class="form-control" name="adults">
+												<option><?php echo $adults ?></option>
+                        <option>1</option>
 												<option>2</option>
 												<option>3</option>
 												<option>4</option>
@@ -195,8 +196,9 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Children</span>
-											<select class="form-control" value="<?php echo $child ?>">
-												<option>0</option>
+											<select class="form-control" name="child">
+												<option><?php echo $child ?></option>
+                        <option>0</option>
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
