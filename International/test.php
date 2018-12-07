@@ -17,7 +17,7 @@ if(!empty($checklist)) {
 	echo "<script>alert(\"Food Select Success. Redirecting to summary page...\");</script>";
 }else {
 	echo "<script>window.location.href='order_menu.html';alert(\"Please select at least one food for further process\");</script>";
-	
+
 }
 
 ?>
@@ -72,7 +72,7 @@ if(!empty($checklist)) {
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
+
 	<!--menu-->
 	<link rel="stylesheet" href="css/menubox.css">
 
@@ -91,7 +91,7 @@ if(!empty($checklist)) {
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<b href="index.html">Home</b>
+							<a href="index.html">Home</a>
 							<li class="has-dropdown">
 								<a href="order_menu.html">Order</a>
 								<ul class="dropdown">
@@ -109,7 +109,7 @@ if(!empty($checklist)) {
 							</li>
 							<li><a href="Inventory.html">Inventory</a></li>
 							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
+							<li class="btn-cta"><a href="/php/logout.php"><span>Sign out</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -121,11 +121,12 @@ if(!empty($checklist)) {
 	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				
-				<h2>Order Summary</h2>
+
+
 
 				<div class="row form-group">
-					<div class="col-md-12">
+					<div class="col-md-10" align="center">
+						<h2>Order Summary</h2>
 						<label for="email">Price for each food</label>
 						<p align="right">
 							<?php
@@ -135,24 +136,23 @@ if(!empty($checklist)) {
 									$u_data = mysqli_fetch_array($u_result);
 									echo $check . '    ' . $u_data['price'];
 									echo "<br>";
-								} 
+								}
 							?>
 						</p>
 						<br/>
-						
-						<p align="right"><?php echo "<label for='email'>Total Price: </label>". $_SESSION['total_price']; ?></p>
+
+						<p align="right"><?php echo "<label for='email'>Total Price: $</label>". $_SESSION['total_price']; ?></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
+
 		<form action="../payorder.html" method="POST">
 			<p align="center">
 				<input type="submit" value="Check Out" class="btn btn-primary">
 			</p>
 		</form>
-		
+
 	</div>
 
 	<footer id="fh5co-footer" role="contentinfo">

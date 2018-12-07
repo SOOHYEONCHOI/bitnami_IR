@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -21,6 +22,8 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -28,21 +31,32 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="css/magnific-popup.css">
+
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
+
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style_min.css">
+
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 
 	</head>
 	<body>
+
 	<div class="fh5co-loader"></div>
+
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="top-menu">
@@ -53,7 +67,7 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<a href="index.html">Home</a>
 							<li class="has-dropdown">
 								<a href="order.html">Order</a>
 								<ul class="dropdown">
@@ -61,7 +75,13 @@
 									<li><a href="#">To Go</a></li>
 								</ul>
 							</li>
-							<li><a href="reservation.html">Reservation</a></li>
+							<li class="has-dropdown">
+								<a href="reservation.html">Reservation</a>
+								<ul class="dropdown">
+									<li><a href="reservation.html">Create</a></li>
+									<li><a href="/php/manage_res.php">Manage</a></li>
+								</ul>
+							</li>
 							<li class="has-dropdown">
 								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
@@ -78,85 +98,41 @@
 			</div>
 		</div>
 	</nav>
+	<div>
 
-	<div id="fh5co-contact">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9 animate-box">
-					<h3>Payment</h3>
-					<h4>Complete the form below to make the payment for your order.</h4>
+	</div>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
 
-					<form action="payorder.php" method="POST">
-						<p2>Your personal information</p>
-						<div class="row form-group">
-							<div class="col-md-6">
-								<label>First Name</label>
-								<input type="text" name="fname" class="form-control" placeholder="Your first name">
-
-								<label>Last Name</label>
-								<input type="text" name="lname" class="form-control" placeholder="Your last name">
-
-								<label>Email Address</label>
-								<input type="email" name="pEmail" class="form-control" placeholder="info@yoursite.com">
-
-								<label>Phone Number</label>
-								<input type="text" name="phonenumber" maxlength="10" class="form-control" maxlength="10" placeholder="Your phone number without symbol">
-							</div>
+					<div class="col-md-7 col-md-push-5">
+						<div class="booking-cta">
+							<h1>Make your reservation</h1>
+							<p style="cursor:pointer" onclick="window.open('/img/map.png','asdfo8or','width=500,height=300')"> Show map </p>
 						</div>
-
-						<br/>
-
-						<p2>Your payment information</p>
-						<div class="row form-group">
-							<div class="col-md-6">
-								<label>Name on Card</label>
-								<input type="text" name="nameoncard" class="form-control" placeholder="Card holder's name">
-
-								<label>Card Number</label>
-								<input type="text" name="cardnum" maxlength="16" class="form-control" placeholder="Enter Card Number Here">
-
-								<label>CSV</label>
-								<input type="text" name="csv" maxlength="3" class="form-control" placeholder="###">
-
-								<br/>
-								<select name="expireMM">
-									<option value=''>Month</option>
-									<option value='01'>January</option>
-									<option value='02'>February</option>
-									<option value='03'>March</option>
-									<option value='04'>April</option>
-									<option value='05'>May</option>
-									<option value='06'>June</option>
-									<option value='07'>July</option>
-									<option value='08'>August</option>
-									<option value='09'>September</option>
-									<option value='10'>October</option>
-									<option value='11'>November</option>
-									<option value='12'>December</option>
-								</select>
-								<select name="expireDD">
-									<option value="18">2018</option>
-									<option value="19">2019</option>
-									<option value="20">2020</option>
-									<option value="21">2021</option>
-									<option value="22">2022</option>
-									<option value="23">2023</option>
-									<option value="24">2024</option>
-								</select>
-							</div>
+					</div>
+					<div class="col-md-4 col-md-pull-7">
+						<div class="booking-form">
+							<form action="/php/create_res.php" method="POST">
+                <div class="form-btn">
+                  <p align="center">
+                    <input type="button" value="Auto" class="btn btn-primary" onclick="window.location.href='/php/vip_res.php'">
+                    <input type="button" value="Basic" class="btn btn-primary" onclick="window.location.href='reservation0.html'">
+                  </p>
+                </div>
+							</form>
 						</div>
-						<div class="form-group">
-							<p>
-							<input type="submit" value="Pay" class="btn btn-primary">
-							</p>
-						</div>
-					</form>
-
-
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div>
+   <a> </a>
+	</div>
+
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
@@ -168,11 +144,11 @@
 				<div class="col-md-3 col-md-push-1">
 					<h4>Navigation</h4>
 					<ul class="fh5co-footer-links">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="order.html">Order</a></li>
-						<li><a href="reservation.html">Reservation</a></li>
-						<li><a href="advertisement.html">Advertisement</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../order.html">Order</a></li>
+						<li><a href="../reservation.html">Reservation</a></li>
+						<li><a href="../advertisement.html">Advertisement</a></li>
+						<li><a href="../contact.html">Contact</a></li>
 					</ul>
 				</div>
 
@@ -241,9 +217,6 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
 

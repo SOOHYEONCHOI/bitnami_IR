@@ -1,7 +1,3 @@
-<?php
-	session_start();
-	$username = $_SESSION['username'];
-?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -12,7 +8,6 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
-
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -26,6 +21,8 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
 
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="../css/animate.css">
@@ -45,6 +42,7 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/style_min.css">
 
 	<!-- Modernizr JS -->
 	<script src="../js/modernizr-2.6.2.min.js"></script>
@@ -68,7 +66,7 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<b href="../index.html">Home</b>
+							<a href="../index.html">Home</a>
 							<li class="has-dropdown">
 								<a href="../order_menu.html">Order</a>
 								<ul class="dropdown">
@@ -80,7 +78,7 @@
 								<a href="../reservation.html">Reservation</a>
 								<ul class="dropdown">
 									<li><a href="../reservation.html">Create</a></li>
-									<li><a href="../php/manage_res.php">Manage</a></li>
+									<li><a href="manage_res.php">Manage</a></li>
 								</ul>
 							</li>
 							<li class="has-dropdown">
@@ -90,93 +88,64 @@
 									<li><a href="#">Survey</a></li>
 								</ul>
 							</li>
+							<li><a href="../about.html">About</a></li>
 							<li><a href="../contact.html">Contact</a></li>
-							<li class="has-dropdown">
-								<a href="../php/edit_account.php?username=<?php echo $username?>">Account</a>
-							</li>
-							<li class="btn-cta"><a href="../php/logout.php"><span>Sign out</span></a></li>
+							<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</nav>
+	<div>
 
-	<aside id="fh5co-hero" class="js-fullheight">
-		<div class="flexslider js-fullheight">
-			<ul class="slides">
-		   	<li style="background-image: url(../images/back1.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container">
-		   			<div class="row">
-			   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-			   				<div class="slider-text-inner">
-									<h1>International Restaurant</h1>
-									<h2>Come in and have good time with good foods!</h2>
-									<p><a class="btn btn-primary btn-lg" href="reservation.html">Make A Reservation</a></p>
-			   				</div>
-			   			</div>
-			   		</div>
-		   		</div>
-		   	</li>
-		   	<li style="background-image: url(../images/back2.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container">
-		   			<div class="row">
-			   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-			   				<div class="slider-text-inner">
-									<h1>International Restaurant</h1>
-									<h2>Come in and have good time with good foods!</h2>
-									<p><a class="btn btn-primary btn-lg" href="reservation.html">Make A Reservation</a></p>
-			   				</div>
-			   			</div>
-			   		</div>
-		   		</div>
-		   	</li>
-		   	<li style="background-image: url(../images/back3.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container">
-		   			<div class="row">
-			   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-			   				<div class="slider-text-inner">
-									<h1>International Restaurant</h1>
-									<h2>Come in and have good time with good foods!</h2>
-									<p><a class="btn btn-primary btn-lg" href="reservation.html">Make A Reservation</a></p>
-			   				</div>
-			   			</div>
-			   		</div>
-		   		</div>
-		   	</li>
-		  	</ul>
-	  	</div>
-	</aside>
+	</div>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
 
-	<div id="fh5co-counter" class="fh5co-counters fh5co-bg-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 text-center animate-box">
-					<span class="icon"><i class="icon-user"></i></span>
-					<span class="fh5co-counter js-counter" data-from="0" data-to="27539" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Satisfied Clients</span>
-				</div>
-				<div class="col-md-3 text-center animate-box">
-					<span class="icon"><i class="icon-speech-bubble"></i></span>
-					<span class="fh5co-counter js-counter" data-from="0" data-to="23563" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Cases Won</span>
-				</div>
-				<div class="col-md-3 text-center animate-box">
-					<span class="icon"><i class="icon-trophy"></i></span>
-					<span class="fh5co-counter js-counter" data-from="0" data-to="5067" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Awards Won</span>
-				</div>
-				<div class="col-md-3 text-center animate-box">
-					<span class="icon"><i class="icon-users"></i></span>
-					<span class="fh5co-counter js-counter" data-from="0" data-to="2587" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Lawyers</span>
+					<div class="col-md-7 col-md-push-5">
+						<div class="booking-cta">
+							<h1>Make your reservation</h1>
+							<p style="cursor:pointer" onclick="window.open('/img/map.png','asdfo8or','width=500,height=300')"> Show map </p>
+						</div>
+					</div>
+					<div class="col-md-4 col-md-pull-7">
+						<div class="booking-form">
+							<form action="vip_cre_res.php" method="POST">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Date</span>
+											<input class="form-control" type="date" name ="date"required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Time</span>
+											<input class="form-control" type="time" name = "time" required>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<p align = "center">
+									<input type="submit" value="Check availability" class="btn btn-primary">
+									</p>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div>
+   <a> </a>
+	</div>
+
+
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
 			<div class="row row-pb-md">
@@ -187,11 +156,11 @@
 				<div class="col-md-3 col-md-push-1">
 					<h4>Navigation</h4>
 					<ul class="fh5co-footer-links">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="order.html">Order</a></li>
-						<li><a href="reservation.html">Reservation</a></li>
-						<li><a href="advertisement.html">Advertisement</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../order.html">Order</a></li>
+						<li><a href="../reservation.html">Reservation</a></li>
+						<li><a href="../advertisement.html">Advertisement</a></li>
+						<li><a href="../contact.html">Contact</a></li>
 					</ul>
 				</div>
 
@@ -238,7 +207,7 @@
 	</div>
 
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		<a href="#" class="../js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 
 	<!-- jQuery -->

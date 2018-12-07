@@ -40,6 +40,8 @@
     else if($data['Flag1'] == 0) {
       $sql = "UPDATE reservation SET location ='$location_d', res_date = '$date_d', res_time ='$time_d', seat = '$seat_d', adults = '$adults_d', child='$child_d' where res_ID = '$res_id'";
       mysqli_query($conn, $sql);
+      $sql = "UPDATE res_history SET location ='$location_d', res_date = '$date_d', res_time ='$time_d', seat = '$seat_d', adults = '$adults_d', child='$child_d' where res_ID = '$res_id'";
+      mysqli_query($conn, $sql);
       echo "<script>alert(\"Your reservation is edited successfuly! \");</script>";
       echo("<script>location.replace('manage_res.php');</script>");
     }
