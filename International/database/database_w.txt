@@ -1,23 +1,23 @@
 CREATE TABLE inventory_table(
-	inven_ID 				INT,
-	purchase_Date			DATE,
-    item_name 				VARCHAR(30),
-    item_type	 			VARCHAR(30),
-	item_unit				VARCHAR(30),
-    amount		 			INT,
-    current_price 			FLOAT,		 	
-    status 					VARCHAR(30),
-    expire_date				DATE,
+	inven_ID 				INT AUTO_INCREMENT	NOT NULL,
+	purchase_Date			DATE				NOT NULL,
+    item_name 				VARCHAR(30)			NOT NULL,
+    item_type	 			VARCHAR(30)			NOT NULL,
+	item_unit				VARCHAR(30)			NOT NULL,
+    amount		 			INT					NOT NULL,
+    current_price 			FLOAT				NOT NULL,		 	
+    status 					VARCHAR(30)			NOT NULL,
+    expire_date				DATE				NOT NULL,
     
     PRIMARY KEY (inven_ID, purchase_Date)
 );
 
 CREATE TABLE inventory_struct_table(	
-    item_name 				VARCHAR(30),
-    item_type	 			VARCHAR(30),
-	item_unit				VARCHAR(30),
-    current_price 			FLOAT,
-	duration_date			VARCHAR(30),
+    item_name 				VARCHAR(30)			NOT NULL,
+    item_type	 			VARCHAR(30)			NOT NULL,
+	item_unit				VARCHAR(30)			NOT NULL,
+    current_price 			FLOAT				NOT NULL,
+	duration_date			VARCHAR(30)			NOT NULL,
 	
     PRIMARY KEY (item_name)
 );

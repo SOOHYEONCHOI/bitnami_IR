@@ -127,7 +127,7 @@
 						<div class="row form-group">
 
 							<span class="form-label">Select item</span>
-							<select name = "select_item_name"  class="form-control">
+							<select name = "select_item_name"  class="form-control" required>
 								<option> </option>
 								<?php
 									$sql2 = 'SELECT DISTINCT item_name FROM inventory_struct_table';
@@ -178,25 +178,27 @@
 									  echo "</tr>";
 								  } ?>
 							</table>
-
-							<div class="col-md-12">
-								<label for="purchase">purchase cost</label>
-								<input type="number" min="0" name="select_purchase_cost" class="form-control" placeholder="enter your cost to pay">
-							</div>
-
 						</div>
 
 						<div class="form-group">
 							<p align = "middle">
-							<input type="submit" value="pruchase" class="btn btn-primary">
+							<input type="submit" value="pruchase manual" class="btn btn-primary">
 							</p>
 						</div>
 					</form>
-
+					
+					<form action="php/inventory_auto.php" method="POST">
+						<div class="form-group">
+							<p align = "middle">
+							<input type="submit" value="purchase automatic" class="btn btn-primary">
+							</p>
+						</div>
+					</form>
 					<h2>Inventory table history</h2>
 					<form action ="inventory.html", method="post">
 						<table style="width:200%" scope="col" >
 						<?php
+						
 						  $n2_records = $conn->query($sql);
 
 						  echo "<td> inven_ID </td>";
@@ -220,8 +222,15 @@
 							  echo "<td>".$row['current_price']."</td>";
 							  echo "<td>".$row['status']."</td>";
 							  echo "<td>".$row['expire_date']."</td>";
+							  
+							  $current_date = date('Y-m-d');
+							  if($row['expire_date'] <= $current_date){
+								$set_ID = $row['inven_ID'];
+								$check_exp_date_sql = "UPDATE inventory_table SET status='expired' WHERE inven_ID=$set_ID";  
+								mysqli_query($conn, $check_exp_date_sql);
+							  }
+
 						?>
-						<!--<td><button onclick="remove_update(event)">DELETE</button></td>-->
 						<?php echo "</tr>"; } ?>
 						</table>
 					</form>
