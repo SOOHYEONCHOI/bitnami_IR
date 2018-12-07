@@ -133,80 +133,80 @@
                     <li><a href="manage_res.php">Manage</a></li>
                   </ul>
                 </li>
-               <li class="has-dropdown">
-                 <a href="../advertisement.html">Advertisement</a>
-                 <ul class="dropdown">
-                   <li><a href="#">Event</a></li>
-                   <li><a href="#">Survey</a></li>
-                 </ul>
-               </li>
-               <li><a href="../Inventory.html">Inventory</a></li>
+								<li class="has-dropdown">
+									<a href="../advertisement.html">Advertisement</a>
+									<ul class="dropdown">
+										<li><a href="#">Event</a></li>
+										<li><a href="#">Survey</a></li>
+									</ul>
+								</li>
+								<li><a href="../Inventory.html">Inventory</a></li>
                 <li><a href="../about.html">About</a></li>
-               <li><a href="../contact.html">Contact</a></li>
-               <li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
-             </ul>
-           </div>
-         </div>
-       </div>
-     </div>
-   </nav>
- <div>
+  							<li><a href="../contact.html">Contact</a></li>
+								<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	<div>
 
  </div>
 
- <div id="fh5co-contact">
-   <div class="container">
-     <div class="row">
-       <div class="col-md-35 animate-box">
-         <h2> <?php echo $username_d?>' Reservation List</h2>
-         <div class ="table_layout">
-           <table>
-             <colgroup class = "text-center">
-               <col width="5%" />
-               <col width="10%" />
-               <col width="10%" />
-               <col width="8%" />
-               <col width="5%" />
-               <col width="5%" />
-               <col width="5%" />
-               <col width="7%" />
-               <col width="10%" />
-             </colgroup>
-             <b>Manage Your Reservation</b>
-             <thead>
-               <tr>
-                 <th>Reservation ID</th>
-                 <th>Location</th>
-                 <th>Date</th>
-                 <th>Time</th>
-                 <th>Seat</th>
-                 <th>Adults</th>
-                 <th>Children</th>
-                 <th> </th>
-                 <th> </th>
-               </tr>
-             </thead>
-             <tbody>
-               <?php
-               for($j=1; $j<=$numrow; $j++){
-                    echo '<tr><td>' . $res_ID[$j-1] . '</td>'.
-                        '<td>' . $location[$j-1] . '</td>' .
-                        '<td>' . $res_date[$j-1] . '</td>' .
-                        '<td>' . $res_time[$j-1] . '</td>' .
-                        '<td>' . $seat[$j-1] . '</td>' .
-                        '<td>' . $adults[$j-1] . '</td>' .
-                        '<td>' . $child[$j-1] . '</td>'.
-                        '<td> <a href="edit_res.php?res_id='. $res_ID[$j-1] .'"> Edit </a> </td>'.
-                        '<td> <a href="delete_res.php?res_ID='.$res_ID[$j-1].'" onclick="return confirm(\'Do you want to delete Y/N\')"> Delete</a> </td></tr>';
-                }
-                ?>
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
+	<div id="fh5co-contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-35 animate-box">
+					<h2> <?php echo $username_d?>' Reservation List</h2>
+					<div class ="table_layout">
+						<table>
+							<colgroup class = "text-center">
+								<col width="5%" />
+            		<col width="10%" />
+            		<col width="10%" />
+            		<col width="8%" />
+            		<col width="5%" />
+								<col width="5%" />
+								<col width="5%" />
+								<col width="7%" />
+								<col width="10%" />
+							</colgroup>
+							<b>Manage Your Reservation</b>
+							<thead>
+								<tr>
+									<th>Reservation ID</th>
+									<th>Location</th>
+									<th>Date</th>
+									<th>Time</th>
+									<th>Seat</th>
+									<th>Adults</th>
+									<th>Children</th>
+									<th> </th>
+									<th> </th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								for($j=1; $j<=$numrow; $j++){
+										 echo '<tr><td>' . $res_ID[$j-1] . '</td>'.
+												 '<td>' . $location[$j-1] . '</td>' .
+												 '<td>' . $res_date[$j-1] . '</td>' .
+												 '<td>' . $res_time[$j-1] . '</td>' .
+												 '<td>' . $seat[$j-1] . '</td>' .
+												 '<td>' . $adults[$j-1] . '</td>' .
+												 '<td>' . $child[$j-1] . '</td>'.
+												 '<td> <a href="edit_res.php?res_id='. $res_ID[$j-1] .'"> Edit </a> </td>'.
+												 '<td> <a href="delete_res.php?res_ID='.$res_ID[$j-1].'" onclick="return confirm(\'Do you want to delete Y/N\')"> Delete</a> </td></tr>';
+								 }
+								 ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
   <footer id="fh5co-footer" role="contentinfo">

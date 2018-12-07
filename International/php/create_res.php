@@ -8,7 +8,6 @@
   $adults_d = $_POST["adults"];
   $child_D = $_POST["child"];
   $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
-  
   $sql = "SELECT COUNT(location) as Flag1 FROM reservation WHERE location ='$restaurant_d' and res_date = '$date_d' and res_time = '$time_d' and seat = '$seat_d'";
   $result = mysqli_query($conn, $sql);
   $data = mysqli_fetch_assoc($result);
