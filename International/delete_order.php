@@ -55,7 +55,7 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]-->
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	
@@ -118,7 +118,7 @@
 			</div>
 		</div>
 		
-		<button class="btn btn-primary" action="../customer/customer_index.html">Back</button>
+		<button><a href="../customer/customer_index.html">Back</a></button>
 		
 	</div>
 

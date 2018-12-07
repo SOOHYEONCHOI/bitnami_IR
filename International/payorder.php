@@ -1,30 +1,79 @@
 <?php
 	session_start();
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
+	$email = $_POST['pEmail'];
+	$phoneNum = $_POST['phonenumber'];
+	$nameOcard = $_POST['nameoncard'];
+	$cardnum = $_POST['cardnum'];
+	$csv = $_POST['csv'];
+	$expireM = $_POST['expireMM'];
+	$expireD = $_POST['expireDD'];
+	
 	$digits_needed = 8;
 	$random_number = '';
 	$count = 0;
 	
-	while($count < $digits_needed) {
-		$random_digit = mt_rand(0, 9);
-		$random_number .= $random_digit;
-		$count++;
-	}
-	$orderID = date("Ymd") .''. $random_number;
-	$_SESSION['orderID'] = $orderID;
+	#check bank information
 	
-	$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
-	$total_price = $_SESSION['total_price'];
 	
-	if(!empty($_SESSION['select_food'])) {
-		foreach($_SESSION['select_food'] as $eachfood) {
-			$u_select = "SELECT menuname, menu_ID FROM menu WHERE menuname = '$eachfood'";
-			$u_result = mysqli_query($conn, $u_select);
-			$u_data = mysqli_fetch_array($u_result);
-			$foodID = $u_data['menu_ID'];
-			$u_insert = "INSERT INTO sale (order_ID, username, menu_ID, amount, total_price, estimatedTime, category) VALUES('$orderID', 'guest', '$foodID', 1, '$total_price', 25, 'Order: For Here')";
-			$u_result = mysqli_query($conn, $u_insert);
+	
+	if(empty($fname) or empty($lname) or empty($email) or empty($phoneNum) or empty($nameOcard) or empty($cardnum) or empty($csv) or empty($expireM) or empty($expireD)) {
+		echo "<script>window.location.href='payorder.html';alert(\"Please fill all information\");</script>";
+	}else {
+		if(!ctype_alpha($fname) or !ctype_alpha($lname)) {
+			echo "<script>window.location.href='payorder.html';alert(\"Error - first name or last name is invalid\");</script>";
+		}else {
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid email\");</script>";
+			}else {
+				if(!is_numeric($phoneNum)) {
+					echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid phone number\");</script>";
+				}else {
+					if(is_numeric($nameOcard)) {
+						echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid Card Holder's Name\");</script>";
+					}else {
+						if(strlen($cardnum) < 10 || !is_numeric($cardnum)) {
+							echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid card number. Please check size and format\");</script>";
+						}else {
+							if(strlen($csv) < 3 || !is_numeric($csv)) {
+								echo "<script>window.location.href='payorder.html';alert(\"Error - Invalid CSV number\");</script>";
+							}else {
+								if((int)$expireD < 18) {
+									echo "<script>window.location.href='payorder.html';alert(\"Error - The card has been expired\");</script>";
+								}else if((int)$expireD == 18 and (int)$expireM <= 12) {
+									echo "<script>window.location.href='payorder.html';alert(\"Error - The card has been expired\");</script>";
+								}else {
+									while($count < $digits_needed) {
+										$random_digit = mt_rand(0, 9);
+										$random_number .= $random_digit;
+										$count++;
+									}
+									$orderID = date("Ymd") .''. $random_number;
+									$_SESSION['orderID'] = $orderID;
+									
+									$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+									$total_price = $_SESSION['total_price'];
+									
+									if(!empty($_SESSION['select_food'])) {
+										foreach($_SESSION['select_food'] as $eachfood) {
+											$u_select = "SELECT menuname, menu_ID FROM menu WHERE menuname = '$eachfood'";
+											$u_result = mysqli_query($conn, $u_select);
+											$u_data = mysqli_fetch_array($u_result);
+											$foodID = $u_data['menu_ID'];
+											$u_insert = "INSERT INTO sale (order_ID, username, menu_ID, amount, total_price, estimatedTime, category) VALUES('$orderID', 'guest', '$foodID', 1, '$total_price', 25, 'Order: For Here')";
+											$u_result = mysqli_query($conn, $u_insert);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -74,9 +123,9 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]-->
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<!-- [endif]-->
 	
 	<!--menu-->
 	<link rel="stylesheet" href="css/menubox.css">
@@ -160,7 +209,7 @@
 		<form action="delete_order.php">
 			<input type="submit" value="Delete Order" class="btn btn-primary">
 		</form>
-		<button class="btn btn-primary" action="../customer/customer_index.html">Back</button>
+		<button><a href="customer/customer_index.html">Back</a></button>
 		
 	</div>
 
@@ -251,3 +300,4 @@
 	<script src="js/accordion_menu.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+
