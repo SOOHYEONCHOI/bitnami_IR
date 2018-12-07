@@ -1,29 +1,10 @@
 <?php
 	session_start();
-	$digits_needed = 8;
-	$random_number = '';
-	$count = 0;
-	
-	while($count < $digits_needed) {
-		$random_digit = mt_rand(0, 9);
-		$random_number .= $random_digit;
-		$count++;
-	}
-	$orderID = date("Ymd") .''. $random_number;
-	$_SESSION['orderID'] = $orderID;
-	
 	$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
-	$total_price = $_SESSION['total_price'];
-	
-	if(!empty($_SESSION['select_food'])) {
-		foreach($_SESSION['select_food'] as $eachfood) {
-			$u_select = "SELECT menuname, menu_ID FROM menu WHERE menuname = '$eachfood'";
-			$u_result = mysqli_query($conn, $u_select);
-			$u_data = mysqli_fetch_array($u_result);
-			$foodID = $u_data['menu_ID'];
-			$u_insert = "INSERT INTO sale (order_ID, username, menu_ID, amount, total_price, estimatedTime, category) VALUES('$orderID', 'guest', '$foodID', 1, '$total_price', 25, 'Order: For Here')";
-			$u_result = mysqli_query($conn, $u_insert);
-		}
+	if(!empty($_SESSION['orderID'])) {
+		$deleteID = $_SESSION['orderID'];
+		$u_delete = "DELETE FROM sale WHERE order_ID = '$deleteID'";
+		mysqli_query($conn, $u_delete);
 	}
 ?>
 
@@ -131,35 +112,12 @@
 
 				<div class="row form-group">
 					<div class="col-md-12">
-						<p>
-							<?php
-								echo "Order ID:  {$orderID}";
-							?>
-						</p>
 						
-						<label for="email">Price for each food</label>
-						<p align="right">
-							<?php
-								foreach($_SESSION['select_food'] as $check){
-									$u_sql = "SELECT menuname, price FROM menu WHERE menuname = '$check'";
-									$u_result = mysqli_query($conn, $u_sql);
-									$u_data = mysqli_fetch_array($u_result);
-									echo $check . '    ' . $u_data['price'];
-									echo "<br>";
-								} 
-							?>
-						</p>
-						<br/>
-						
-						<p align="right"><?php echo "<label for='email'>Total Price: </label>". $_SESSION['total_price']; ?></p>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<form action="delete_order.php">
-			<input type="submit" value="Delete Order" class="btn btn-primary">
-		</form>
 		<button class="btn btn-primary" action="../customer/customer_index.html">Back</button>
 		
 	</div>
