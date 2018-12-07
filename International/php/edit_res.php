@@ -1,5 +1,6 @@
 <?php
   session_start();
+  
   $username_d = $_SESSION["username"];
   $res_ID = $_GET["res_id"];
 
