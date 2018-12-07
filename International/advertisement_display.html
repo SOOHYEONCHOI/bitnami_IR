@@ -9,6 +9,7 @@
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
 
+
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -46,9 +47,30 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]-->
 	<script src="js/respond.min.js"></script>
-	<!--[endif]-->
+	<!-- [endif]-->
+	
+	<!--menu-->
+	<link rel="stylesheet" href="css/menubox.css">
 
 	</head>
+	
+	<style>
+ 	.table_layout {
+   	width: 100%;
+ 	}
+ 	table {
+   	width: 100%;
+   	border: 3px solid #bcbcbc;
+   	text-align: center;
+ 	}
+ 	th, td{
+   	border: 3px solid #bcbcbc;
+   	text-align: center;
+ 	}
+ 	.text-center { text-align: center; }
+ 	.text-right { text-align: right; }
+ 	</style>
+	
 	<body>
 
 	<div class="fh5co-loader"></div>
@@ -63,9 +85,9 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<a href="index.html">Home</a>
+							<b href="index.html">Home</b>
 							<li class="has-dropdown">
-								<a href="order.html">Order</a>
+								<a href="order_menu.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
@@ -73,13 +95,13 @@
 							</li>
 							<li><a href="reservation.html">Reservation</a></li>
 							<li class="has-dropdown">
-								<b href="advertisement.html">Advertisement</b>
+								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
 									<li><a href="#">Event</a></li>
 									<li><a href="#">Survey</a></li>
 								</ul>
 							</li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="Inventory.html">Inventory</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
 						</ul>
@@ -89,65 +111,58 @@
 		</div>
 	</nav>
 
-	<div class="fh5co-contact">
+<!-- new one -->
+	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				
-				<p>Create Advertisement</p>
-				<form action="createAd.php" method="POST" id="adForm">
-					<div class="row form-group">
-						<div class="col-md-6">
-							<label>Title</label>
-							<input type="text" name="title" class="form-control" placeholder="Enter Title Here">
-							
-							<br/>
-							<label>Duration</label>
-							<select name="duration">
-								<option value='1'>1 day</option>
-								<option value='2'>2 days</option>
-								<option value='3'>3 days</option>
-								<option value='4'>4 days</option>
-								<option value='5'>5 days</option>
-								<option value='6'>6 days</option>
-								<option value='7'>7 days</option>
-								<option value='8'>8 days</option>
-								<option value='9'>9 days</option>
-								<option value='10'>10 days</option>
-								<option value='11'>11 days</option>
-								<option value='12'>12 days</option>
-								<option value='13'>13 days</option>
-								<option value='14'>14 days</option>
-								<option value='15'>15 days</option>
-								<option value='16'>16 days</option>
-								<option value='17'>17 days</option>
-								<option value='18'>18 days</option>
-								<option value='19'>19 days</option>
-								<option value='20'>20 days</option>
-								<option value='21'>21 days</option>
-								<option value='22'>22 days</option>
-								<option value='23'>23 days</option>
-								<option value='24'>24 days</option>
-								<option value='25'>25 days</option>
-								<option value='26'>26 days</option>
-								<option value='27'>27 days</option>
-								<option value='28'>28 days</option>
-								<option value='29'>29 days</option>
-								<option value='30'>30 days</option>
-							</select>
-						</div>
+			<div class="col-md-35 anumate-box">
+				<h2>Order Review</h2>
+
+				<div class="row form-group">
+					<div class="table_layout">
+					<table>
+						<colgroup class = "text-center">
+							<col width="9.54198%" />
+							<col width="14.50382%" />
+							<col width="22.90076%" />
+							<col width="11.068702%" />
+							<col width="17.17557%" />
+							<col width="17.17557%" />
+							<col width="7.63359%" />
+						</colgroup>
+						<b>Advertisement List</b>
+						<thead>
+							<tr>
+								<th>Ad ID</th>
+								<th>Ad Title</th>
+								<th>Ad Content</th>
+								<th>Ad Duration</th>
+								<th>Start Time</th>
+								<th>End Time</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+					
+						<tbody>
+							<?php
+								$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+								$u_select = "SELECT * FROM advertisement";
+								$u_result = mysqli_query($conn, $u_select);
+								echo "<table>";
+								while($row=mysqli_fetch_array($u_result)) {
+									echo '<tr><td>' . $row['ad_ID'] . '</td>'. '<td>' . $row['ad_Title'] . '</td>' . '<td>' . $row['ad_contents'] . '</td>' . '<td>' . " Lasts " . $row['duration'] . " days " . '</td>' . '<td>' . $row['start_Date'] . '</td>' . '<td>' . $row['end_Date'] . '</td>' . '<td>' . $row['ADstatus'] . '</td></tr>';
+								}
+							?>
+						</tbody>
+					</table>
 					</div>
-					
-					<label>Description</label>
-					<br>
-					<textarea rows="5" cols="50" name="description" form="adForm">Enter Short Description Here</textarea>
-					
-					<div class="form-group">
-						<input type="submit" value="Create" class="btn-primary">
-					</div>
-					
-				</form>
+				</div>
+				</div>
 			</div>
 		</div>
+
+		<p align="center"><button><a href="customer/customer_index.html">Back</a></button></p>
+		
 	</div>
 
 	<footer id="fh5co-footer" role="contentinfo">
@@ -233,8 +248,8 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
+	<!-- Accordion Menu -->
+	<script src="js/accordion_menu.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
-	</body>
-</html>
