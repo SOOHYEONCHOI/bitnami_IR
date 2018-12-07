@@ -184,32 +184,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9 animate-box">
-					<!--
-					<h3>display summary order</h3>
-						<?php 
-
-							echo "<td> item purchased date : </td>";
-							echo "<td> $purchase_Date_d <br/></td>";
-								
-							echo "<td> amount bought:	<td>";
-							echo "<td> $purchase_amount_d <br/><td>";
-								
-							echo "<td> item name : </td>";
-							echo "<td> $item_name_d <br/></td>";
-								
-							echo "<td> item type : </td>";
-							echo "<td> $item_type_d <br/></td>";
-							
-							echo "<td> total cost : </td>";
-							echo "<td> $total_cost dollars <br/></td>";
-							
-							echo "<td> item expires : </td>";
-							echo "<td> $expire_date <br/></td>";
-							$insert_sql = "INSERT INTO inventory_table( purchase_Date, item_name, item_type, item_unit, amount, current_price, status, expire_date) VALUES( '$purchase_Date_d', '$item_name_d', '$item_type_d', '$item_unit_d', '$purchase_amount_d', '$current_price_d', '$status', '$expire_date')";
-							mysqli_query($conn, $insert_sql);
-					
-						?>
-						-->
 					<form action="../inventory.html" method="POST">
 						<div class="form-group">
 							<p align = "center">

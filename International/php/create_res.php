@@ -22,6 +22,8 @@
   else if($data['Flag1'] == 0) {
     $sql = "INSERT INTO reservation (location, res_date, res_time, seat, adults, child, username) VALUES ('$restaurant_d','$date_d', '$time_d', '$seat_d', '$adults_d','$child_D', '$username_d')";
     mysqli_query($conn, $sql);
+    $sql = "INSERT INTO res_history (location, res_date, res_time, seat, adults, child, username) VALUES ('$restaurant_d','$date_d', '$time_d', '$seat_d', '$adults_d','$child_D', '$username_d')";
+    mysqli_query($conn, $sql);
     echo "<script>alert(\"Your request is reserved successfuly! \");</script>";
     echo("<script>location.replace('manage_res.php');</script>");
   }

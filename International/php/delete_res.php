@@ -5,7 +5,7 @@
 
   $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
 
-  $sql = "DELETE From reservation where username = '$username_d' and res_ID ='$res_ID_d'";
+  $sql = "DELETE From res_history where res_ID ='$res_ID_d'";
   $result = mysqli_query($conn, $sql);
 
   $data = mysqli_fetch_assoc($result);
