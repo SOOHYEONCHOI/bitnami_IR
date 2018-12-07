@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $_SESSION['username'] = $username_s;
   $username_d = $_GET["username"];
   $_SESSION['username_d'] = $username_d;
 

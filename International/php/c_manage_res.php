@@ -1,10 +1,9 @@
 <?php
  session_start();
- include 're_levelcheck.php';
  $username_d = $_SESSION["username"];
 
  $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
- $sql = "SELECT res_ID, location, res_date, res_time, seat, adults, child, username from reservation";
+ $sql = "SELECT res_ID, location, res_date, res_time, seat, adults, child, username from reservation where username = '$username_d'";
  $result = mysqli_query($conn, $sql);
 
  $numrow = mysqli_num_rows($result);
@@ -27,7 +26,7 @@
    $seat[$i] = $data[seat];
    $adults[$i] = $data[adults];
    $child[$i] = $data[child];
-   $username[$i] = $data[username];
+    $username[$i] = $data[username];
    $i++;
  }
 
@@ -121,14 +120,14 @@
              <ul>
                <a href="../index.html">Home</a>
                <li class="has-dropdown">
-                 <a href="../order.html">Order</a>
+                 <a href="../order_menu.html">Order</a>
                  <ul class="dropdown">
                    <li><a href="#">For Here</a></li>
                    <li><a href="#">To Go</a></li>
                  </ul>
                </li>
                 <li class="has-dropdown">
-                  <a href="reservation.html">Reservation</a>
+                  <a href="../reservation.html">Reservation</a>
                   <ul class="dropdown">
                     <li><a href="../reservation.html">Create</a></li>
                     <li><a href="manage_res.php">Manage</a></li>
@@ -141,8 +140,10 @@
 										<li><a href="#">Survey</a></li>
 									</ul>
 								</li>
-                <li><a href="../about.html">About</a></li>
   							<li><a href="../contact.html">Contact</a></li>
+                <li class="has-dropdown">
+                  <a href="edit_account.php?username=<?php echo $username?>">Account</a>
+                </li>
 								<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
 							</ul>
 						</div>
@@ -158,7 +159,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-35 animate-box">
-					<h2> Customers Reservation List</h2>
+					<h2> <?php echo $username_d?>' Reservation List</h2>
 					<div class ="table_layout">
 						<table>
 							<colgroup class = "text-center">
@@ -169,9 +170,8 @@
             		<col width="5%" />
 								<col width="5%" />
 								<col width="5%" />
-                <col width="10%" />
-								<col width="5%" />
 								<col width="7%" />
+								<col width="10%" />
 							</colgroup>
 							<b>Manage Your Reservation</b>
 							<thead>
@@ -183,7 +183,6 @@
 									<th>Seat</th>
 									<th>Adults</th>
 									<th>Children</th>
-                  <th>Username</th>
 									<th> </th>
 									<th> </th>
 								</tr>
@@ -198,7 +197,6 @@
 												 '<td>' . $seat[$j-1] . '</td>' .
 												 '<td>' . $adults[$j-1] . '</td>' .
 												 '<td>' . $child[$j-1] . '</td>'.
-                         '<td>' . $username[$j-1] . '</td>'.
 												 '<td> <a href="edit_res.php?res_id='. $res_ID[$j-1] .'"> Edit </a> </td>'.
 												 '<td> <a href="delete_res.php?res_ID='.$res_ID[$j-1].'" onclick="return confirm(\'Do you want to delete Y/N\')"> Delete</a> </td></tr>';
 								 }

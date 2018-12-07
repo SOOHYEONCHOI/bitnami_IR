@@ -133,7 +133,7 @@
 							</li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
+							<li class="btn-cta"><a href="../signin.html"><span>Sign in</span></a></li>
 						</ul>
 					</div>
 				</div>
