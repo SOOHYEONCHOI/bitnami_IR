@@ -1,5 +1,12 @@
 <!DOCTYPE HTML>
 <html>
+<?php
+	session_start();
+	if(isset($_SESSION['is_login'])){
+		header('Location: ./logined_index.html');
+	}
+?>
+
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,7 +76,7 @@
 						<ul>
 							<b href="index.html">Home</b>
 							<li class="has-dropdown">
-								<a href="order_menu.html">Order</a>
+								<a href="order.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
