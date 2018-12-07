@@ -58,6 +58,15 @@
       $sql = "UPDATE user_account SET zipcode = '$zipcode' where username ='$username_d'";
       mysqli_query($conn, $sql);
     }
+
+    $sql = "SELECT ulevel from user_account where username ='$username_d'";
+    $result = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_assoc($result);
+    if($data["ulevel"] > 4){
+      echo "<script>alert(\"Edit account information success!\");</script>";
+      echo("<script>location.replace('../customer/customer_index.html');</script>");
+    }
+    
     echo "<script>alert(\"Edit account information success!\");</script>";
     echo("<script>location.replace('management.php');</script>");
   }
