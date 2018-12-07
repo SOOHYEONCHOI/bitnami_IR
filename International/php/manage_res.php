@@ -4,7 +4,7 @@
  $username_d = $_SESSION["username"];
 
  $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
- $sql = "SELECT res_ID, location, res_date, res_time, seat, adults, child, username from reservation";
+ $sql = "SELECT res_ID, location, res_date, res_time, seat, adults, child, username from res_history";
  $result = mysqli_query($conn, $sql);
 
  $numrow = mysqli_num_rows($result);
