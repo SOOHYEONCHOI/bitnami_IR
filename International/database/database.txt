@@ -12,7 +12,7 @@ CREATE TABLE user_account(
     city 		VARCHAR(20) 	NULL,
     state 		CHAR(2) 		NULL,
     zipcode 	INT 			NULL,
-    
+
     PRIMARY KEY (username)
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE menu(
 	menuname	VARCHAR(30)		NOT NULL,
 	price		FLOAT			NOT NULL,
 	description	VARCHAR(255)	NOT NULL,
-	
+
 	PRIMARY KEY (menu_ID)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE order(
 	total_price	FLOAT			NOT NULL,
 	estimatedTime	INT			NOT NULL,
 	category	VARCHAR(30)		NOT NULL,
-	
+
 	PRIMARY KEY (order_ID, username, menu_ID),
 	FOREIGH KEY (username) REFERENCES user_account(username),
 	FOREIGH KEY (menu_ID) REFERENCES menu(menu_ID)
@@ -47,15 +47,30 @@ CREATE TABLE advertisement(
 	start_Date	DATETIME		NOT NULL,
 	end_Date	DATETIME		NOT NULL,
 	status		VARCHAR(30)		NOT NULL,
-	
+
 	PRIMARY KEY (ad_ID)
 );
 
 CREATE TABLE have(
 	ad_ID		VARCHAR(10)		NOT NULL,
 	username	VARCHAR(30)		NOT NULL,
-	
+
 	PRIMARY KEY (ad_ID, username),
 	FOREIGH KEY (ad_ID) REFERENCES advertisement(ad_ID),
 	FOREIGH KEY (username) REFERENCES user_Account(username)
+);
+
+
+CREATE TABLE reservation(
+		res_ID INT NOT NULL AUTO_INCREMENT,
+		location VARCHAR(15) NOT NULL,
+		res_date date NOT NULL,
+		res_time VARCHAR(10) NOT NULL,
+		seat INT NOT NULL,
+		adults INT NOT NULL,
+		child INT NOT NULL,
+		username VARCHAR(30) NOT NULL,
+		CONTAINS check_loc CHECK(location in ("Brookings", "New York", "San Francisco", "Minneapolis"),
+		FOREIGN KEY (username) REFERENCES user_account(username),
+		PRIMARY KEY (res_ID, username)
 );
