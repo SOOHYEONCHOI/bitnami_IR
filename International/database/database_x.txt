@@ -46,7 +46,7 @@ CREATE TABLE advertisement(
 	duration	INT				NOT NULL,
 	start_Date	DATETIME		NOT NULL,
 	end_Date	DATETIME		NOT NULL,
-	status		VARCHAR(30)		NOT NULL,
+	ADstatus		VARCHAR(30)		NOT NULL,
 
 	PRIMARY KEY (ad_ID)
 );
