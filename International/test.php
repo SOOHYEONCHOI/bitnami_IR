@@ -1,7 +1,9 @@
 <?php
+session_start();
 $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
 $checklist = array();
 $checklist = $_POST['check_list'];
+$_SESSION['select_food'] = $checklist;
 
 if(!empty($checklist)) {
 	foreach($checklist as $check) {
@@ -10,12 +12,12 @@ if(!empty($checklist)) {
 		$u_data = mysqli_fetch_array($u_result);
 		$total_price += (float) $u_data['price'];
 	}
+	$_SESSION['total_price'] = $total_price;
 	echo "<script>alert(\"Food Select Success. Redirecting to summary page...\");</script>";
 }else {
-	echo "<script>alert(\"Please select at least one food for further process\");</script>";
-	header('Location: ' . $_SERVER['HTTP_REFERER']);
+	echo "<script>window.location.href='order_menu.html';alert(\"Please select at least one food for further process\");</script>";
+	
 }
-
 
 ?>
 
@@ -90,7 +92,7 @@ if(!empty($checklist)) {
 						<ul>
 							<b href="index.html">Home</b>
 							<li class="has-dropdown">
-								<a href="order.html">Order</a>
+								<a href="order_menu.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
@@ -121,18 +123,36 @@ if(!empty($checklist)) {
 				
 				<h2>Order Summary</h2>
 
-				
 				<div class="row form-group">
 					<div class="col-md-12">
-						<label for="email">Total Price</label>
-						<td><input type="text" name="username" class="form-control" placeholder="<?php echo $total_price ?>"></td>
+						<label for="email">Price for each food</label>
+						<p align="right">
+							<?php
+								foreach($_SESSION['select_food'] as $check){
+									$u_sql = "SELECT menuname, price FROM menu WHERE menuname = '$check'";
+									$u_result = mysqli_query($conn, $u_sql);
+									$u_data = mysqli_fetch_array($u_result);
+									echo $check . '    ' . $u_data['price'];
+									echo "<br>";
+								} 
+							?>
+						</p>
+						<br/>
+						
+						<p align="right"><?php echo "<label for='email'>Total Price: </label>". $_SESSION['total_price']; ?></p>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
+		<form action="../payorder.html" method="POST">
+			<p align="center">
+				<input type="submit" value="Check Out" class="btn btn-primary">
+			</p>
+		</form>
+		
 	</div>
-
-			
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
