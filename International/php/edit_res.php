@@ -1,3 +1,25 @@
+<?php
+  session_start();
+  $username_d = $_SESSION["username"];
+  $res_ID = $_GET["res_id"];
+
+  $conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+  $sql = "SELECT res_ID, location, res_date, res_time, seat, adults, child from reservation where res_ID = '$res_ID'";
+  $result = mysqli_query($conn, $sql);
+  $data = mysqli_fetch_assoc($result);
+
+  $res_ID = $data["res_ID"];
+  $location = $data["location"];
+  $res_date = $data["res_date"];
+  $res_time = $data["res_time"];
+  $seat = $data["seat"];
+  $adults = $data["adults"];
+  $child = $data["child"];
+
+
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -22,30 +44,30 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
 
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="../css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 
 	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="../css/magnific-popup.css">
 
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
+	<link rel="stylesheet" href="../css/flexslider.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/style_min.css">
+	<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/style_min.css">
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="../js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -62,35 +84,35 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="index.html">International Restaurant<span>.</span></a></div>
+						<div id="fh5co-logo"><a href="../index.html">International Restaurant<span>.</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<a href="index.html">Home</a>
+							<a href="../index.html">Home</a>
 							<li class="has-dropdown">
-								<a href="order.html">Order</a>
+								<a href="../order.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
 								</ul>
 							</li>
 							<li class="has-dropdown">
-								<a href="reservation.html">Reservation</a>
+								<a href="r../eservation.html">Reservation</a>
 								<ul class="dropdown">
-									<li><a href="reservation.html">Create</a></li>
-									<li><a href="/php/manage_res.php">Manage</a></li>
+									<li><a href="../reservation.html">Create</a></li>
+									<li><a href="manage_res.php">Manage</a></li>
 								</ul>
 							</li>
 							<li class="has-dropdown">
-								<a href="advertisement.html">Advertisement</a>
+								<a href="../advertisement.html">Advertisement</a>
 								<ul class="dropdown">
 									<li><a href="#">Event</a></li>
 									<li><a href="#">Survey</a></li>
 								</ul>
 							</li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="../php/logout.php"><span>Sign out</span></a></li>
+							<li><a href="../about.html">About</a></li>
+							<li><a href="../contact.html">Contact</a></li>
+							<li class="btn-cta"><a href="logout.php"><span>Sign out</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -104,19 +126,12 @@
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
-
-					<div class="col-md-7 col-md-push-5">
-						<div class="booking-cta">
-							<h1>Make your reservation</h1>
-							<p style="cursor:pointer" onclick="window.open('/img/map.png','asdfo8or','width=500,height=300')"> Show map </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-md-pull-7">
+					<div class="col-md-4">
 						<div class="booking-form">
-							<form action="/php/create_res.php" method="POST">
+							<form>
 								<div class="form-group">
 									<span class="form-label">Location of Restaurant</span>
-									<select class="form-control">
+									<select class="form-control" value="<?php echo $location ?>">
 										<option>Brookings</option>
 										<option>New York</option>
 										<option>San Francisco</option>
@@ -127,13 +142,13 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Date</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" type="date" value=" <?php echo $res_date ?>" required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Time</span>
-											<input class="form-control" type="time" required>
+											<input class="form-control" type="time" value=" <?php echo $res_time ?>" required>
 										</div>
 									</div>
 								</div>
@@ -141,7 +156,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Seat</span>
-											<select class="form-control">
+											<select class="form-control" value="<?php echo $seat ?>">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -167,7 +182,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Adults</span>
-											<select class="form-control">
+											<select class="form-control" value="<?php echo $adults ?>">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -180,7 +195,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<span class="form-label">Children</span>
-											<select class="form-control">
+											<select class="form-control" value="<?php echo $child ?>">
 												<option>0</option>
 												<option>1</option>
 												<option>2</option>
@@ -193,7 +208,7 @@
 								</div>
 								<div class="form-btn">
 									<p align = "center">
-										<button class="btn btn-primary">Check availability</button>
+										<button class="btn btn-primary">Comfirm</button>
 									</p>
 								</div>
 							</form>
@@ -274,26 +289,26 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="../js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="../js/jquery.waypoints.min.js"></script>
 	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
 	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
 	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
+	<script src="../js/jquery.flexslider-min.js"></script>
 	<!-- countTo -->
-	<script src="js/jquery.countTo.js"></script>
+	<script src="../js/jquery.countTo.js"></script>
 	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
+	<script src="../js/jquery.magnific-popup.min.js"></script>
+	<script src="../js/magnific-popup-options.js"></script>
 	<!-- Main -->
-	<script src="js/main.js"></script>
+	<script src="../js/main.js"></script>
 
 	</body>
 </html>
