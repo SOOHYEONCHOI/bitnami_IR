@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	$conn = mysqli_connect('localhost', 'root', 'asd123', 'drunkencode') or die("Failed");
+	if(!empty($_SESSION['orderID'])) {
+		$deleteID = $_SESSION['orderID'];
+		$u_delete = "DELETE FROM sale WHERE order_ID = '$deleteID'";
+		mysqli_query($conn, $u_delete);
+	}
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,6 +18,7 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
+
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -44,9 +55,12 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]-->
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	
+	<!--menu-->
+	<link rel="stylesheet" href="css/menubox.css">
 
 	</head>
 	<body>
@@ -63,9 +77,9 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<a href="index.html">Home</a>
+							<b href="index.html">Home</b>
 							<li class="has-dropdown">
-								<a href="order.html">Order</a>
+								<a href="order_menu.html">Order</a>
 								<ul class="dropdown">
 									<li><a href="#">For Here</a></li>
 									<li><a href="#">To Go</a></li>
@@ -73,13 +87,13 @@
 							</li>
 							<li><a href="reservation.html">Reservation</a></li>
 							<li class="has-dropdown">
-								<b href="advertisement.html">Advertisement</b>
+								<a href="advertisement.html">Advertisement</a>
 								<ul class="dropdown">
 									<li><a href="#">Event</a></li>
 									<li><a href="#">Survey</a></li>
 								</ul>
 							</li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="Inventory.html">Inventory</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
 						</ul>
@@ -89,18 +103,23 @@
 		</div>
 	</nav>
 
-	<div class="fh5co-contact">
+<!-- new one -->
+	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9 animate-box">
-					<p>Create Advertisement</p>
-					<form action="createAd.php" method="POST">
-						<input type="text" name="title" class=>
+				
+				<h2>Order Review</h2>
+
+				<div class="row form-group">
+					<div class="col-md-12">
 						
-					</form>
+					</div>
 				</div>
-			</dov>
+			</div>
 		</div>
+		
+		<button><a href="../customer/customer_index.html">Back</a></button>
+		
 	</div>
 
 	<footer id="fh5co-footer" role="contentinfo">
@@ -186,8 +205,7 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
+	<!-- Accordion Menu -->
+	<script src="js/accordion_menu.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
-
-	</body>
-</html>
