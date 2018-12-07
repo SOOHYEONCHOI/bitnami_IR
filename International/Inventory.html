@@ -1,3 +1,18 @@
+<?php
+$conn = new mysqli('localhost', 'root', 'asd123', 'drunkencode');
+if($conn->connect_error){
+	die("Connection Fail:".$conn->connect_error);
+}
+else{
+	//echo "connection success";
+}
+
+$sql = 'SELECT * FROM inventory_table';
+
+$records = $conn->query($sql);
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -95,14 +110,127 @@
 							</li>
 							<li><b href="Inventory.html">Inventory</b></li>
 							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="signin.html"><span>Sign in</span></a></li>
+							<li class="btn-cta"><a href="../php/logout.php"><span>Sign out</span></a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</nav>
+	
+	<div id="fh5co-contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-pull 8 animate-box">
+					<h2>select item to purchase</h2>
+					<form action="php/inventory.php" method="POST">				
+						<div class="row form-group">					
 
+							<span class="form-label">Select item</span>
+							<select name = "select_item_name"  class="form-control">
+								<option> </option>	
+								<?php
+									$sql2 = 'SELECT DISTINCT item_name FROM inventory_struct_table';
+									$records = $conn->query($sql2);
+									while($row = $records->fetch_assoc()){ ?>
+									 <option> <?php echo $row['item_name']; ?> </option>			
+								<?php } ?>
+							</select>
+						
+							<div class="col-sm-6">
+								<div class="form-group">
+									<span class="form-label">Purchase Date</span>
+									<input name = "select_purchase_date" class="form-control" type="date" required>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<span class="form-label">Purchase amount</span>
+									<input name = "select_purchace_amount" class="form-control" type="number" min="0" required>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div>
+									<a></br> item price table </br></a>
+								</div>
+							</div>
+							
+							<table style="width:150%" scope="col" >
+								<?php
+								  $sql3 = 'SELECT * FROM inventory_struct_table';
+								  $n3_records = $conn->query($sql3);
+								  
+								  echo "<td> item_name </td>";
+								  echo "<td> item_type </td>";
+								  echo "<td> item_unit </td>";
+								  echo "<td> current_price </td>";
+								  echo "<td> duration_date </td>";
+								  
+								  while($row = $n3_records->fetch_assoc()){
+									  echo "<tr>";
+									  echo "<td>". $row['item_name']. "</td>";
+									  echo "<td>". $row['item_type']. "</td>";
+									  echo "<td>". $row['item_unit']. "</td>";
+									  echo "<td>". $row['current_price']. "</td>";
+									  echo "<td>". $row['duration_date']. " days </td>";
+									  echo "</tr>"; 
+								  } ?>
+							</table>							
+							
+							<div class="col-md-12">
+								<label for="purchase">purchase cost</label>
+								<input type="number" min="0" name="select_purchase_cost" class="form-control" placeholder="enter your cost to pay">
+							</div>
+							
+						</div>
+						
+						<div class="form-group">
+							<p align = "middle">
+							<input type="submit" value="pruchase" class="btn btn-primary">
+							</p>
+						</div>
+					</form>
+					
+					<h2>Inventory table history</h2>
+					<form action ="inventory.html", method="post">
+						<table style="width:200%" scope="col" >
+						<?php 
+						  $n2_records = $conn->query($sql);
+						  
+						  echo "<td> inven_ID </td>";
+						  echo "<td> purchase_Date </td>";
+						  echo "<td> item_name </td>";
+						  echo "<td> item_type </td>";
+						  echo "<td> item_unit </td>";
+						  echo "<td> amount </td>";
+						  echo "<td> current_price </td>";
+						  echo "<td> status </td>";
+						  echo "<td> expire_date </td>";
+						  
+						  while($row = $n2_records->fetch_assoc()){
+							  echo "<tr>";
+							  echo "<td>".$row['inven_ID']."</td>"; 
+							  echo "<td>".$row['purchase_Date']."</td>";
+							  echo "<td>".$row['item_name']."</td>";
+							  echo "<td>".$row['item_type']."</td>";
+							  echo "<td>".$row['item_unit']."</td>";
+							  echo "<td>".$row['amount']."</td>";
+							  echo "<td>".$row['current_price']."</td>";
+							  echo "<td>".$row['status']."</td>";
+							  echo "<td>".$row['expire_date']."</td>";
+						?>
+						<!--<td><button onclick="remove_update(event)">DELETE</button></td>-->
+						<?php echo "</tr>"; } ?>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!--
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
@@ -111,8 +239,9 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner desc">
-		   					<h2 class="heading-section">Blog</h2>
-		   					<p class="fh5co-lead">Designed with <i class="icon-heart3"></i> by the fine folks at <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a></p>
+		   					<h2>Inventory table</h2>
+							<table style="width:150%" scope="col" >
+							</table>
 		   				</div>
 		   			</div>
 		   		</div>
@@ -120,7 +249,7 @@
 		  	</ul>
 	  	</div>
 	</aside>
-
+	
 	<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row">
@@ -277,6 +406,67 @@
 		</div>
 	</footer>
 	</div>
+-->
+
+	<footer id="fh5co-footer" role="contentinfo">
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 fh5co-widget">
+					<h4>International Restaurant</h4>
+					<p>Explain about Restaurant</p>
+				</div>
+				<div class="col-md-3 col-md-push-1">
+					<h4>Navigation</h4>
+					<ul class="fh5co-footer-links">
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../order.html">Order</a></li>
+						<li><a href="../reservation.html">Reservation</a></li>
+						<li><a href="../advertisement.html">Advertisement</a></li>
+						<li><a href="../contact.html">Contact</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-3 col-md-push-1">
+					<h4>Contact Information</h4>
+					<ul class="fh5co-footer-links">
+						<li>1217 8th St, Brookings, SD</li>
+						<li><a href="tel://1234567920">+1 6056912499</a></li>
+						<li><a href="mailto:drunkencodeinc@gmail.com">drunkencodeinc@gmail.com</a></li>
+						<li><a href="http://localhost/index.html">InternationalRestaurant.com</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-3 col-md-push-1">
+					<h4>Opening Hours</h4>
+					<ul class="fh5co-footer-links">
+						<li>Mon - Thu: 9:00 - 21 00</li>
+						<li>Fri 8:00 - 21 00</li>
+						<li>Sat 9:30 - 15: 00</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; 2016 International Restaurant. All Rights Reserved.</small>
+						<small class="block">Designed by <a href="#" target="_blank">DrunkencodeInc.</a> </small>
+					</p>
+					<p>
+						<ul class="fh5co-social-icons">
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-linkedin"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
@@ -306,3 +496,6 @@
 
 	</body>
 </html>
+
+<?php $conn->close(); ?>
+
