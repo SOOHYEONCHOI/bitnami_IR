@@ -8,6 +8,9 @@
   $sql = "DELETE From reservation where username = '$username_d' and res_ID ='$res_ID_d'";
   $result = mysqli_query($conn, $sql);
 
+  $data = mysqli_fetch_assoc($result);
+
+
   echo "<script>alert(\"Delete Complete\");</script>";
   echo("<script>location.replace('manage_res.php');</script>");
 

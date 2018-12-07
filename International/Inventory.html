@@ -1,15 +1,15 @@
 <?php
-$conn = new mysqli('localhost', 'root', 'asd123', 'drunkencode');
-if($conn->connect_error){
-	die("Connection Fail:".$conn->connect_error);
-}
-else{
-	//echo "connection success";
-}
+	$conn = new mysqli('localhost', 'root', 'asd123', 'drunkencode');
+	if($conn->connect_error){
+		die("Connection Fail:".$conn->connect_error);
+	}
+	else{
+		//echo "connection success";
+	}
 
-$sql = 'SELECT * FROM inventory_table';
+	$sql = 'SELECT * FROM inventory_table';
 
-$records = $conn->query($sql);
+	$records = $conn->query($sql);
 
 ?>
 
@@ -117,57 +117,57 @@ $records = $conn->query($sql);
 			</div>
 		</div>
 	</nav>
-	
+
 	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-pull 8 animate-box">
 					<h2>select item to purchase</h2>
-					<form action="php/inventory.php" method="POST">				
-						<div class="row form-group">					
+					<form action="php/inventory.php" method="POST">
+						<div class="row form-group">
 
 							<span class="form-label">Select item</span>
 							<select name = "select_item_name"  class="form-control">
-								<option> </option>	
+								<option> </option>
 								<?php
 									$sql2 = 'SELECT DISTINCT item_name FROM inventory_struct_table';
 									$records = $conn->query($sql2);
 									while($row = $records->fetch_assoc()){ ?>
-									 <option> <?php echo $row['item_name']; ?> </option>			
+									 <option> <?php echo $row['item_name']; ?> </option>
 								<?php } ?>
 							</select>
-						
+
 							<div class="col-sm-6">
 								<div class="form-group">
 									<span class="form-label">Purchase Date</span>
 									<input name = "select_purchase_date" class="form-control" type="date" required>
 								</div>
 							</div>
-							
+
 							<div class="col-sm-4">
 								<div class="form-group">
 									<span class="form-label">Purchase amount</span>
 									<input name = "select_purchace_amount" class="form-control" type="number" min="0" required>
 								</div>
 							</div>
-							
+
 							<div class="col-sm-4">
 								<div>
 									<a></br> item price table </br></a>
 								</div>
 							</div>
-							
+
 							<table style="width:150%" scope="col" >
 								<?php
 								  $sql3 = 'SELECT * FROM inventory_struct_table';
 								  $n3_records = $conn->query($sql3);
-								  
+
 								  echo "<td> item_name </td>";
 								  echo "<td> item_type </td>";
 								  echo "<td> item_unit </td>";
 								  echo "<td> current_price </td>";
 								  echo "<td> duration_date </td>";
-								  
+
 								  while($row = $n3_records->fetch_assoc()){
 									  echo "<tr>";
 									  echo "<td>". $row['item_name']. "</td>";
@@ -175,30 +175,30 @@ $records = $conn->query($sql);
 									  echo "<td>". $row['item_unit']. "</td>";
 									  echo "<td>". $row['current_price']. "</td>";
 									  echo "<td>". $row['duration_date']. " days </td>";
-									  echo "</tr>"; 
+									  echo "</tr>";
 								  } ?>
-							</table>							
-							
+							</table>
+
 							<div class="col-md-12">
 								<label for="purchase">purchase cost</label>
 								<input type="number" min="0" name="select_purchase_cost" class="form-control" placeholder="enter your cost to pay">
 							</div>
-							
+
 						</div>
-						
+
 						<div class="form-group">
 							<p align = "middle">
 							<input type="submit" value="pruchase" class="btn btn-primary">
 							</p>
 						</div>
 					</form>
-					
+
 					<h2>Inventory table history</h2>
 					<form action ="inventory.html", method="post">
 						<table style="width:200%" scope="col" >
-						<?php 
+						<?php
 						  $n2_records = $conn->query($sql);
-						  
+
 						  echo "<td> inven_ID </td>";
 						  echo "<td> purchase_Date </td>";
 						  echo "<td> item_name </td>";
@@ -208,10 +208,10 @@ $records = $conn->query($sql);
 						  echo "<td> current_price </td>";
 						  echo "<td> status </td>";
 						  echo "<td> expire_date </td>";
-						  
+
 						  while($row = $n2_records->fetch_assoc()){
 							  echo "<tr>";
-							  echo "<td>".$row['inven_ID']."</td>"; 
+							  echo "<td>".$row['inven_ID']."</td>";
 							  echo "<td>".$row['purchase_Date']."</td>";
 							  echo "<td>".$row['item_name']."</td>";
 							  echo "<td>".$row['item_type']."</td>";
@@ -229,7 +229,7 @@ $records = $conn->query($sql);
 			</div>
 		</div>
 	</div>
-	
+
 <!--
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
@@ -249,7 +249,7 @@ $records = $conn->query($sql);
 		  	</ul>
 	  	</div>
 	</aside>
-	
+
 	<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row">
@@ -498,4 +498,3 @@ $records = $conn->query($sql);
 </html>
 
 <?php $conn->close(); ?>
-
